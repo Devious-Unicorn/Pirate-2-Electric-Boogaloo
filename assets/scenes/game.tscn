@@ -1,3 +1,13 @@
 [gd_scene format=3 uid="uid://cghvp6eqijeld"]
 
+[ext_resource type="PackedScene" uid="uid://6iyri4l1xav" path="res://assets/scenes/boat.tscn" id="1_5gf0t"]
+[ext_resource type="PackedScene" uid="uid://d0nq38ji0rgv2" path="res://assets/scenes/islands.tscn" id="2_cb5na"]
+[ext_resource type="PackedScene" uid="uid://s25dhmbfj3it" path="res://assets/scenes/ocean.tscn" id="3_j62u1"]
+
 [node name="Game" type="Node2D" unique_id=771860513]
+
+[node name="Boat" parent="." unique_id=1002307284 instance=ExtResource("1_5gf0t")]
+
+[node name="Islands" parent="." unique_id=914712744 instance=ExtResource("2_cb5na")]
+
+[node name="Ocean" parent="." unique_id=1751609981 instance=ExtResource("3_j62u1")]
