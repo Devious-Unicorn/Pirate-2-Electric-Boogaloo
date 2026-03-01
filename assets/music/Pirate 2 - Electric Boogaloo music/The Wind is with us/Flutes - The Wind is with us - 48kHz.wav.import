@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://dfmjs1svgka1h"
+path="res://.godot/imported/Flutes - The Wind is with us - 48kHz.wav-c725e45b861b55dfdba0ed4eb699d964.sample"
+
+[deps]
+
+source_file="res://assets/music/Pirate 2 - Electric Boogaloo music/The Wind is with us/Flutes - The Wind is with us - 48kHz.wav"
+dest_files=["res://.godot/imported/Flutes - The Wind is with us - 48kHz.wav-c725e45b861b55dfdba0ed4eb699d964.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

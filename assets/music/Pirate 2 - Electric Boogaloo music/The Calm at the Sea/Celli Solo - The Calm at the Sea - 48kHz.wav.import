@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://dlp7quf1gnr78"
+path="res://.godot/imported/Celli Solo - The Calm at the Sea - 48kHz.wav-bfde4c3a8a2d12615e6e737760af89a3.sample"
+
+[deps]
+
+source_file="res://assets/music/Pirate 2 - Electric Boogaloo music/The Calm at the Sea/Celli Solo - The Calm at the Sea - 48kHz.wav"
+dest_files=["res://.godot/imported/Celli Solo - The Calm at the Sea - 48kHz.wav-bfde4c3a8a2d12615e6e737760af89a3.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

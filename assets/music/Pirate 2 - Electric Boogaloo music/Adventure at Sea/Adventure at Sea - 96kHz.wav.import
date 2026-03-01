@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://da7jllbkfnbgd"
+path="res://.godot/imported/Adventure at Sea - 96kHz.wav-86798874879a00137aa8f4f61157f854.sample"
+
+[deps]
+
+source_file="res://assets/music/Pirate 2 - Electric Boogaloo music/Adventure at Sea/Adventure at Sea - 96kHz.wav"
+dest_files=["res://.godot/imported/Adventure at Sea - 96kHz.wav-86798874879a00137aa8f4f61157f854.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

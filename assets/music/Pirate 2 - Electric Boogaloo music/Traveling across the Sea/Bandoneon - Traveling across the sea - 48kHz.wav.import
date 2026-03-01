@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://0hym3awn466i"
+path="res://.godot/imported/Bandoneon - Traveling across the sea - 48kHz.wav-3839c0717c9298838694706eceaa11fb.sample"
+
+[deps]
+
+source_file="res://assets/music/Pirate 2 - Electric Boogaloo music/Traveling across the Sea/Bandoneon - Traveling across the sea - 48kHz.wav"
+dest_files=["res://.godot/imported/Bandoneon - Traveling across the sea - 48kHz.wav-3839c0717c9298838694706eceaa11fb.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

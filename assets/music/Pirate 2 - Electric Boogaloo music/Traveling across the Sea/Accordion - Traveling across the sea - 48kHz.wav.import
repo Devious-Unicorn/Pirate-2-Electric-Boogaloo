@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://d1ursfiywppfa"
+path="res://.godot/imported/Accordion - Traveling across the sea - 48kHz.wav-17a88f75532d2707163275d807f7234e.sample"
+
+[deps]
+
+source_file="res://assets/music/Pirate 2 - Electric Boogaloo music/Traveling across the Sea/Accordion - Traveling across the sea - 48kHz.wav"
+dest_files=["res://.godot/imported/Accordion - Traveling across the sea - 48kHz.wav-17a88f75532d2707163275d807f7234e.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

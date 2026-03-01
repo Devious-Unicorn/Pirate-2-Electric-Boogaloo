@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://csx7s5vaxvymb"
+path="res://.godot/imported/Bass - Traveling across the sea - 48kHz.wav-ee1be44586fb62c2d7d5e74bbb719f56.sample"
+
+[deps]
+
+source_file="res://assets/music/Pirate 2 - Electric Boogaloo music/Traveling across the Sea/Bass - Traveling across the sea - 48kHz.wav"
+dest_files=["res://.godot/imported/Bass - Traveling across the sea - 48kHz.wav-ee1be44586fb62c2d7d5e74bbb719f56.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://dwm0qj7q8gw1f"
+path="res://.godot/imported/Horns - Sailing to the New World - 48kHz.wav-ad3621a87e70dfae602dbbb44c1b4a2f.sample"
+
+[deps]
+
+source_file="res://assets/music/Pirate 2 - Electric Boogaloo music/Sailing to the New World/Horns - Sailing to the New World - 48kHz.wav"
+dest_files=["res://.godot/imported/Horns - Sailing to the New World - 48kHz.wav-ad3621a87e70dfae602dbbb44c1b4a2f.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

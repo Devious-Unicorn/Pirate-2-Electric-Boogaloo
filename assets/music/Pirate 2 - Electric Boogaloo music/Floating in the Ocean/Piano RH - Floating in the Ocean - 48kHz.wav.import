@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://br6570jxdmji2"
+path="res://.godot/imported/Piano RH - Floating in the Ocean - 48kHz.wav-b66e03618edeac84d61e11e05a558de2.sample"
+
+[deps]
+
+source_file="res://assets/music/Pirate 2 - Electric Boogaloo music/Floating in the Ocean/Piano RH - Floating in the Ocean - 48kHz.wav"
+dest_files=["res://.godot/imported/Piano RH - Floating in the Ocean - 48kHz.wav-b66e03618edeac84d61e11e05a558de2.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

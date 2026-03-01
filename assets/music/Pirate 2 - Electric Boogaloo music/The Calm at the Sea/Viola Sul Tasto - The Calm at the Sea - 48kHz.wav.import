@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://c6ya57proniem"
+path="res://.godot/imported/Viola Sul Tasto - The Calm at the Sea - 48kHz.wav-a6b03ec98b8892d47e53e4a35473ad3e.sample"
+
+[deps]
+
+source_file="res://assets/music/Pirate 2 - Electric Boogaloo music/The Calm at the Sea/Viola Sul Tasto - The Calm at the Sea - 48kHz.wav"
+dest_files=["res://.godot/imported/Viola Sul Tasto - The Calm at the Sea - 48kHz.wav-a6b03ec98b8892d47e53e4a35473ad3e.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

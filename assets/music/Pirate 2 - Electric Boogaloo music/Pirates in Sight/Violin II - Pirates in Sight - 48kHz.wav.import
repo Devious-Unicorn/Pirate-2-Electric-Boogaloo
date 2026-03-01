@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://d4foxd7retkrv"
+path="res://.godot/imported/Violin II - Pirates in Sight - 48kHz.wav-bcf06ea51855a98f4c44d476bae62933.sample"
+
+[deps]
+
+source_file="res://assets/music/Pirate 2 - Electric Boogaloo music/Pirates in Sight/Violin II - Pirates in Sight - 48kHz.wav"
+dest_files=["res://.godot/imported/Violin II - Pirates in Sight - 48kHz.wav-bcf06ea51855a98f4c44d476bae62933.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

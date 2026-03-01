@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://cvevu2pit5u11"
+path="res://.godot/imported/Contrabassoon - The Wind is with us - 48kHz.wav-655d52d1660634e68efa6f92812c689a.sample"
+
+[deps]
+
+source_file="res://assets/music/Pirate 2 - Electric Boogaloo music/The Wind is with us/Contrabassoon - The Wind is with us - 48kHz.wav"
+dest_files=["res://.godot/imported/Contrabassoon - The Wind is with us - 48kHz.wav-655d52d1660634e68efa6f92812c689a.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

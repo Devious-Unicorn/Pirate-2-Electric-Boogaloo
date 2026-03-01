@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://cn4vl7n3k1xb"
+path="res://.godot/imported/Flutes - Adventure at Sea - 48kHz.wav-43d4dd88eb837ab1aad473163c7aeb1b.sample"
+
+[deps]
+
+source_file="res://assets/music/Pirate 2 - Electric Boogaloo music/Adventure at Sea/Flutes - Adventure at Sea - 48kHz.wav"
+dest_files=["res://.godot/imported/Flutes - Adventure at Sea - 48kHz.wav-43d4dd88eb837ab1aad473163c7aeb1b.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

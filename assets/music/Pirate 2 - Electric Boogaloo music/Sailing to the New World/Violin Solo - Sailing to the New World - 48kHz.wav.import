@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://u2vgnn5arvuv"
+path="res://.godot/imported/Violin Solo - Sailing to the New World - 48kHz.wav-b5a3b1e365e1ef01e03ca5cac6d4da62.sample"
+
+[deps]
+
+source_file="res://assets/music/Pirate 2 - Electric Boogaloo music/Sailing to the New World/Violin Solo - Sailing to the New World - 48kHz.wav"
+dest_files=["res://.godot/imported/Violin Solo - Sailing to the New World - 48kHz.wav-b5a3b1e365e1ef01e03ca5cac6d4da62.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

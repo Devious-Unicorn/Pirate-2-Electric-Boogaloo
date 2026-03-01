@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://b7gg75om1tt0p"
+path="res://.godot/imported/Master - Traveling across the sea - 48kHz.mp3-03f2ee012c8de6fa340e0a8b481f7d4f.mp3str"
+
+[deps]
+
+source_file="res://assets/music/Pirate 2 - Electric Boogaloo music/Traveling across the Sea/Master - Traveling across the sea - 48kHz.mp3"
+dest_files=["res://.godot/imported/Master - Traveling across the sea - 48kHz.mp3-03f2ee012c8de6fa340e0a8b481f7d4f.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

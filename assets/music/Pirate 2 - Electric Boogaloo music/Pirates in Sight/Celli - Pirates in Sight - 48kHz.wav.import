@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://m7mg504ij4dn"
+path="res://.godot/imported/Celli - Pirates in Sight - 48kHz.wav-da6936dd250dd4af38f8cda6fb9997f7.sample"
+
+[deps]
+
+source_file="res://assets/music/Pirate 2 - Electric Boogaloo music/Pirates in Sight/Celli - Pirates in Sight - 48kHz.wav"
+dest_files=["res://.godot/imported/Celli - Pirates in Sight - 48kHz.wav-da6936dd250dd4af38f8cda6fb9997f7.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

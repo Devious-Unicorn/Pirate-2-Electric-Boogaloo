@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://cje5rk4hgels4"
+path="res://.godot/imported/Pirates in Sight - 96kHz.wav-ab9f1bbfc0fc3df793305369bb2032f8.sample"
+
+[deps]
+
+source_file="res://assets/music/Pirate 2 - Electric Boogaloo music/Pirates in Sight/Pirates in Sight - 96kHz.wav"
+dest_files=["res://.godot/imported/Pirates in Sight - 96kHz.wav-ab9f1bbfc0fc3df793305369bb2032f8.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

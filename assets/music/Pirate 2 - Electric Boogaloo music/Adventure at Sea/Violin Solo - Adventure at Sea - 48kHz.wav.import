@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://cife8gb6vwnro"
+path="res://.godot/imported/Violin Solo - Adventure at Sea - 48kHz.wav-e271253d81b7fde2852d8040a2725b1b.sample"
+
+[deps]
+
+source_file="res://assets/music/Pirate 2 - Electric Boogaloo music/Adventure at Sea/Violin Solo - Adventure at Sea - 48kHz.wav"
+dest_files=["res://.godot/imported/Violin Solo - Adventure at Sea - 48kHz.wav-e271253d81b7fde2852d8040a2725b1b.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

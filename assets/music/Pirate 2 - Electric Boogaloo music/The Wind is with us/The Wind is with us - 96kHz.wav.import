@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://vcjgrelb4273"
+path="res://.godot/imported/The Wind is with us - 96kHz.wav-669f3c2eee5b1dbd100f6ee92abc4f6c.sample"
+
+[deps]
+
+source_file="res://assets/music/Pirate 2 - Electric Boogaloo music/The Wind is with us/The Wind is with us - 96kHz.wav"
+dest_files=["res://.godot/imported/The Wind is with us - 96kHz.wav-669f3c2eee5b1dbd100f6ee92abc4f6c.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

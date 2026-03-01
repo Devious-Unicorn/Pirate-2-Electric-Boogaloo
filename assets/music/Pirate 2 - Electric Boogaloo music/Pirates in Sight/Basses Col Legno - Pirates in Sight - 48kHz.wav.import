@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://cei07qq82cwkp"
+path="res://.godot/imported/Basses Col Legno - Pirates in Sight - 48kHz.wav-822eb0f93954197758892c192715439d.sample"
+
+[deps]
+
+source_file="res://assets/music/Pirate 2 - Electric Boogaloo music/Pirates in Sight/Basses Col Legno - Pirates in Sight - 48kHz.wav"
+dest_files=["res://.godot/imported/Basses Col Legno - Pirates in Sight - 48kHz.wav-822eb0f93954197758892c192715439d.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

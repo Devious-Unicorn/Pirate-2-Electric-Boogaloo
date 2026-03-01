@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://d1cwnnbf8mq2p"
+path="res://.godot/imported/Piano Left Hand - Pirates in Sight - 48kHz.wav-f4c6190bfca0b5b68c0bb12551ce5e95.sample"
+
+[deps]
+
+source_file="res://assets/music/Pirate 2 - Electric Boogaloo music/Pirates in Sight/Piano Left Hand - Pirates in Sight - 48kHz.wav"
+dest_files=["res://.godot/imported/Piano Left Hand - Pirates in Sight - 48kHz.wav-f4c6190bfca0b5b68c0bb12551ce5e95.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://c7or554u3vxx3"
+path="res://.godot/imported/The Calm at the Sea - 96kHz.wav-5b7232dc7fa0506f74ea9a0252f63687.sample"
+
+[deps]
+
+source_file="res://assets/music/Pirate 2 - Electric Boogaloo music/The Calm at the Sea/The Calm at the Sea - 96kHz.wav"
+dest_files=["res://.godot/imported/The Calm at the Sea - 96kHz.wav-5b7232dc7fa0506f74ea9a0252f63687.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

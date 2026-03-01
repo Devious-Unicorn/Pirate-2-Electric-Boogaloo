@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://5gcoow7qrmjr"
+path="res://.godot/imported/Viola - The Wind is with us - 48kHz.wav-55fb9b4fc29cdaf67eebfa4a5d08f94a.sample"
+
+[deps]
+
+source_file="res://assets/music/Pirate 2 - Electric Boogaloo music/The Wind is with us/Viola - The Wind is with us - 48kHz.wav"
+dest_files=["res://.godot/imported/Viola - The Wind is with us - 48kHz.wav-55fb9b4fc29cdaf67eebfa4a5d08f94a.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2
