@@ -1,9 +1,148 @@
 [gd_scene format=3 uid="uid://3wm6eh5v53kp"]
 
+[ext_resource type="PackedScene" uid="uid://s25dhmbfj3it" path="res://assets/scenes/ocean.tscn" id="1_f2xsc"]
+[ext_resource type="Texture2D" uid="uid://3yarpak2ulb2" path="res://assets/sprites/banner.png" id="2_v71do"]
+[ext_resource type="Texture2D" uid="uid://dcqba82lnjlhi" path="res://assets/sprites/Main menu button BG.png" id="4_66en2"]
+[ext_resource type="FontFile" uid="uid://8aaaattnuvu4" path="res://assets/fonts/aladin/Aladin-Regular.ttf" id="5_ej4af"]
+
+[sub_resource type="Theme" id="Theme_tp4c4"]
+Label/constants/outline_size = 3
+Label/font_sizes/font_size = 32
+Label/fonts/font = ExtResource("5_ej4af")
+
 [node name="Main menu" type="Control" unique_id=764751930]
+texture_filter = 1
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="Ocean" parent="." unique_id=1751609981 instance=ExtResource("1_f2xsc")]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 0.0
+offset_bottom = 0.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1484712047]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -263.5
+offset_top = 50.0
+offset_right = 263.5
+offset_bottom = 175.00002
+grow_horizontal = 2
+texture = ExtResource("2_v71do")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=737677200]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_bottom = 32
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=849493543]
+texture_filter = 1
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 16
+
+[node name="Control2" type="Control" parent="MarginContainer/VBoxContainer" unique_id=1104292743]
+texture_filter = 1
+custom_minimum_size = Vector2(0, 192)
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Play" type="TextureButton" parent="MarginContainer/VBoxContainer" unique_id=688430059]
+texture_filter = 1
+custom_minimum_size = Vector2(256, 48)
+layout_mode = 2
+texture_normal = ExtResource("4_66en2")
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/Play" unique_id=797660045]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_tp4c4")
+text = "Play"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Options" type="TextureButton" parent="MarginContainer/VBoxContainer" unique_id=611561058]
+texture_filter = 1
+custom_minimum_size = Vector2(256, 48)
+layout_mode = 2
+texture_normal = ExtResource("4_66en2")
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/Options" unique_id=1991680476]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_tp4c4")
+text = "Options"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Credits" type="TextureButton" parent="MarginContainer/VBoxContainer" unique_id=1130723958]
+texture_filter = 1
+custom_minimum_size = Vector2(256, 48)
+layout_mode = 2
+texture_normal = ExtResource("4_66en2")
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/Credits" unique_id=1093161339]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_tp4c4")
+text = "Credits"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Quit" type="TextureButton" parent="MarginContainer/VBoxContainer" unique_id=309335000]
+texture_filter = 1
+custom_minimum_size = Vector2(256, 48)
+layout_mode = 2
+texture_normal = ExtResource("4_66en2")
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/Quit" unique_id=852284933]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_tp4c4")
+text = "Quit"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Control" type="Control" parent="MarginContainer/VBoxContainer" unique_id=222798644]
+texture_filter = 1
+layout_mode = 2
+size_flags_vertical = 3
