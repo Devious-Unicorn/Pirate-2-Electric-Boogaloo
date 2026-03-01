@@ -1,0 +1,128 @@
+[gd_scene format=3 uid="uid://qw2a6t35lgcs"]
+
+[ext_resource type="PackedScene" uid="uid://s25dhmbfj3it" path="res://assets/scenes/ocean.tscn" id="1_jsijp"]
+[ext_resource type="Texture2D" uid="uid://3yarpak2ulb2" path="res://assets/sprites/banner.png" id="2_yrtda"]
+[ext_resource type="Texture2D" uid="uid://dcqba82lnjlhi" path="res://assets/sprites/Main menu button BG.png" id="3_6q733"]
+[ext_resource type="FontFile" uid="uid://8aaaattnuvu4" path="res://assets/fonts/aladin/Aladin-Regular.ttf" id="4_vekq2"]
+
+[sub_resource type="Theme" id="Theme_ukq0b"]
+Label/constants/outline_size = 3
+Label/font_sizes/font_size = 32
+Label/fonts/font = ExtResource("4_vekq2")
+
+[node name="Play manu" type="Control" unique_id=1093046807]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Ocean" parent="." unique_id=1751609981 instance=ExtResource("1_jsijp")]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 0.0
+offset_bottom = 0.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1429565667]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -263.5
+offset_top = 50.0
+offset_right = 263.5
+offset_bottom = 175.00002
+grow_horizontal = 2
+texture = ExtResource("2_yrtda")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1992155826]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_bottom = 32
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=1282286866]
+texture_filter = 1
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 16
+
+[node name="Control2" type="Control" parent="MarginContainer/VBoxContainer" unique_id=730757213]
+texture_filter = 1
+custom_minimum_size = Vector2(0, 192)
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Load game" type="TextureButton" parent="MarginContainer/VBoxContainer" unique_id=1990267634]
+texture_filter = 1
+custom_minimum_size = Vector2(256, 48)
+layout_mode = 2
+texture_normal = ExtResource("3_6q733")
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/Load game" unique_id=1431236973]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_ukq0b")
+text = "Load Game"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="New game" type="TextureButton" parent="MarginContainer/VBoxContainer" unique_id=1755625881]
+texture_filter = 1
+custom_minimum_size = Vector2(256, 48)
+layout_mode = 2
+texture_normal = ExtResource("3_6q733")
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/New game" unique_id=1443670877]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_ukq0b")
+text = "New Game"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Quit" type="TextureButton" parent="MarginContainer/VBoxContainer" unique_id=2019258914]
+texture_filter = 1
+custom_minimum_size = Vector2(256, 48)
+layout_mode = 2
+texture_normal = ExtResource("3_6q733")
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/Quit" unique_id=687552350]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_ukq0b")
+text = "Quit"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Control" type="Control" parent="MarginContainer/VBoxContainer" unique_id=255773083]
+texture_filter = 1
+layout_mode = 2
+size_flags_vertical = 3
