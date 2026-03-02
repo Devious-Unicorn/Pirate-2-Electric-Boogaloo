@@ -10,7 +10,7 @@ Label/constants/outline_size = 3
 Label/font_sizes/font_size = 32
 Label/fonts/font = ExtResource("4_vekq2")
 
-[node name="Play manu" type="Control" unique_id=1093046807]
+[node name="Play menu" type="Control" unique_id=1093046807]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
