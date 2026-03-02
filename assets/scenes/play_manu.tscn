@@ -35,19 +35,22 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -263.5
-offset_top = 50.0
-offset_right = 263.5
-offset_bottom = 175.00002
+offset_left = -210.8
+offset_top = 20.0
+offset_right = 316.2
+offset_bottom = 145.00003
 grow_horizontal = 2
+scale = Vector2(0.8, 0.8)
 texture = ExtResource("2_yrtda")
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=1992155826]
 texture_filter = 1
+custom_minimum_size = Vector2(640, 200)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_bottom = 104.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/margin_top = 32
@@ -61,13 +64,12 @@ theme_override_constants/separation = 16
 
 [node name="Control2" type="Control" parent="MarginContainer/VBoxContainer" unique_id=730757213]
 texture_filter = 1
-custom_minimum_size = Vector2(0, 192)
 layout_mode = 2
 size_flags_vertical = 3
 
 [node name="Load game" type="TextureButton" parent="MarginContainer/VBoxContainer" unique_id=1990267634]
 texture_filter = 1
-custom_minimum_size = Vector2(256, 48)
+custom_minimum_size = Vector2(128, 24)
 layout_mode = 2
 texture_normal = ExtResource("3_6q733")
 
@@ -86,7 +88,7 @@ vertical_alignment = 1
 
 [node name="New game" type="TextureButton" parent="MarginContainer/VBoxContainer" unique_id=1755625881]
 texture_filter = 1
-custom_minimum_size = Vector2(256, 48)
+custom_minimum_size = Vector2(128, 24)
 layout_mode = 2
 texture_normal = ExtResource("3_6q733")
 
@@ -105,7 +107,7 @@ vertical_alignment = 1
 
 [node name="Quit" type="TextureButton" parent="MarginContainer/VBoxContainer" unique_id=2019258914]
 texture_filter = 1
-custom_minimum_size = Vector2(256, 48)
+custom_minimum_size = Vector2(128, 24)
 layout_mode = 2
 texture_normal = ExtResource("3_6q733")
 

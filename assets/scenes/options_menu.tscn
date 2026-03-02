@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://cnwi1710488ub"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d2ku8"]
+bg_color = Color(0.09955944, 0.09955944, 0.115290664, 0.24705882)
+corner_radius_top_left = 32
+corner_radius_top_right = 32
+corner_radius_bottom_right = 32
+corner_radius_bottom_left = 32
+
+[node name="Options menu" type="Control" unique_id=1004675623]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=800698855]
+texture_filter = 1
+custom_minimum_size = Vector2(640, 360)
+layout_mode = 0
+offset_left = 32.0
+offset_top = 18.0
+offset_right = 672.0
+offset_bottom = 378.0
+scale = Vector2(0.9, 0.9)
+theme_override_styles/panel = SubResource("StyleBoxFlat_d2ku8")
