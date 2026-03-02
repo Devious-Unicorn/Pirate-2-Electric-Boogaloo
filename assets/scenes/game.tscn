@@ -6,8 +6,21 @@
 
 [node name="Game" type="Node2D" unique_id=771860513]
 
-[node name="Boat" parent="." unique_id=1002307284 instance=ExtResource("1_5gf0t")]
+[node name="Ocean" parent="." unique_id=1751609981 instance=ExtResource("3_j62u1")]
+custom_minimum_size = Vector2(15360, 8640)
+offset_left = -7360.0
+offset_top = -4140.0
+offset_right = 8000.0
+offset_bottom = 4500.0
 
 [node name="Islands" parent="." unique_id=914712744 instance=ExtResource("2_cb5na")]
+custom_minimum_size = Vector2(15360, 8640)
+offset_left = -7360.0
+offset_top = -4140.0
+offset_right = 8000.0
+offset_bottom = 4500.0
 
-[node name="Ocean" parent="." unique_id=1751609981 instance=ExtResource("3_j62u1")]
+[node name="Boat" parent="." unique_id=1002307284 instance=ExtResource("1_5gf0t")]
+acceleration = 8.0
+friction = 1.5
+wind_push_factor = 2.5

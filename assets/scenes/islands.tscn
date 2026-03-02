@@ -1,3 +1,6 @@
 [gd_scene format=3 uid="uid://d0nq38ji0rgv2"]
 
+[ext_resource type="Script" uid="uid://lm2yy6rtgw12" path="res://assets/scripts/islands.gd" id="1_1ooc1"]
+
 [node name="Islands" type="ColorRect" unique_id=914712744]
+script = ExtResource("1_1ooc1")
