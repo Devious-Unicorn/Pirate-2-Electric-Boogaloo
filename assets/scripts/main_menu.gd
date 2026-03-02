@@ -4,6 +4,10 @@ extends Control
 @onready var options = $MarginContainer/VBoxContainer/Options
 @onready var credits = $MarginContainer/VBoxContainer/Credits
 @onready var quit = $MarginContainer/VBoxContainer/Quit
+@onready var Main = get_parent()
+
+var optionsScene
+var creditsScene
 
 func _ready() -> void:
 	quit.pressed.connect(get_tree().quit)
@@ -11,7 +15,9 @@ func _ready() -> void:
 	credits.pressed.connect(creditsMenu)
 
 func optionsMenu():
-	pass
+	optionsScene = preload("res://assets/scenes/options_menu.tscn").instantiate()
+	add_child(optionsScene)
 
 func creditsMenu():
-	pass
+	creditsScene = preload("res://assets/scenes/credits.tscn").instantiate()
+	add_child(creditsScene)
