@@ -1,5 +1,27 @@
 [gd_scene format=3 uid="uid://s25dhmbfj3it"]
 
+[ext_resource type="Shader" uid="uid://bms3gaj2gsueo" path="res://assets/shaders/ocean.gdshader" id="1_rh20c"]
+[ext_resource type="Script" uid="uid://odbrxje72s51" path="res://assets/scripts/ocean.gd" id="2_f8fy1"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_rh20c"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_f8fy1"]
+width = 640
+height = 360
+noise = SubResource("FastNoiseLite_rh20c")
+seamless = true
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1lllv"]
+shader = ExtResource("1_rh20c")
+shader_parameter/noise_img = SubResource("NoiseTexture2D_f8fy1")
+shader_parameter/color_shallow = Color(0, 0.3019608, 0.6, 1)
+shader_parameter/color_deep = Color(0, 0.2, 0.4, 1)
+shader_parameter/pixel_size = 2.0
+shader_parameter/wind_direction = Vector2(0, 0)
+
 [node name="Ocean" type="ColorRect" unique_id=1751609981]
+texture_filter = 1
+material = SubResource("ShaderMaterial_1lllv")
 offset_right = 40.0
 offset_bottom = 40.0
+script = ExtResource("2_f8fy1")

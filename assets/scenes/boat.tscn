@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://6iyri4l1xav"]
 
+[ext_resource type="Script" uid="uid://b71ygtvs6j567" path="res://assets/scripts/boat.gd" id="1_5u0pl"]
 [ext_resource type="Texture2D" uid="uid://dg11mlh4mycnq" path="res://assets/sprites/Boat 32x32.png" id="1_e3ff2"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5u0pl"]
@@ -7,6 +8,7 @@ radius = 6.0
 
 [node name="Boat" type="CharacterBody2D" unique_id=1002307284]
 texture_filter = 1
+script = ExtResource("1_5u0pl")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1602075657]
 texture_filter = 1
