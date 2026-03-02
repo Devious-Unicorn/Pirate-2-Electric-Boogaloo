@@ -13,6 +13,8 @@ func _ready() -> void:
 	quit.pressed.connect(get_tree().quit)
 	options.pressed.connect(optionsMenu)
 	credits.pressed.connect(creditsMenu)
+	play.pressed.connect(Callable(Main, "playMenu"))
+	play.pressed.connect(queue_free)
 
 func optionsMenu():
 	optionsScene = preload("res://assets/scenes/options_menu.tscn").instantiate()

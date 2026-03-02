@@ -14,3 +14,11 @@ var scenes := {
 func _ready() -> void:
 	scenes.mainMenu = packedScenes.mainMenu.instantiate()
 	add_child(scenes.mainMenu)
+
+func playMenu():
+	scenes.playMenu = packedScenes.playMenu.instantiate()
+	add_child(scenes.playMenu)
+
+func newGame():
+	scenes.game = packedScenes.game.instantiate()
+	add_child(scenes.game)
