@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cghvp6eqijeld"]
 
-[ext_resource type="PackedScene" uid="uid://6iyri4l1xav" path="res://assets/scenes/boat.tscn" id="1_5gf0t"]
 [ext_resource type="PackedScene" uid="uid://d0nq38ji0rgv2" path="res://assets/scenes/islands.tscn" id="2_cb5na"]
+[ext_resource type="PackedScene" uid="uid://b62372ab40jl0" path="res://assets/scenes/TEST CAMERA.tscn" id="3_5gf0t"]
 [ext_resource type="PackedScene" uid="uid://s25dhmbfj3it" path="res://assets/scenes/ocean.tscn" id="3_j62u1"]
 
 [node name="Game" type="Node2D" unique_id=771860513]
@@ -14,12 +14,7 @@ offset_right = 8000.0
 offset_bottom = 4500.0
 
 [node name="Islands" parent="." unique_id=914712744 instance=ExtResource("2_cb5na")]
-gameSize = Vector2(480, 270)
-scale_factor = 8.0
-sea_level = 0.5
 noise_freq = 0.005
 
-[node name="Boat" parent="." unique_id=1002307284 instance=ExtResource("1_5gf0t")]
-acceleration = 8.0
-friction = 1.5
-wind_push_factor = 2.5
+[node name="TEST CAMERA" parent="." unique_id=1104364543 instance=ExtResource("3_5gf0t")]
+speed = 500.0

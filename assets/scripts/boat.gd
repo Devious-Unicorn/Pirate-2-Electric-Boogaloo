@@ -17,7 +17,7 @@ var wind_strength: float = 0.0
 var endl := "\n"
 
 func _ready() -> void:
-	position = Ocean.size / 2
+	position = $"../Islands".size / 2
 
 func _unhandled_input(event: InputEvent) -> void:
 	if Input.is_action_pressed("zoom in"): $Camera2D.zoom += Vector2(0.1, 0.1)

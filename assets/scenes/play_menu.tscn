@@ -59,7 +59,7 @@ size_flags_vertical = 3
 
 [node name="Load game" type="TextureButton" parent="MarginContainer/VBoxContainer" unique_id=1990267634]
 texture_filter = 1
-custom_minimum_size = Vector2(128, 24)
+custom_minimum_size = Vector2(192, 32)
 layout_mode = 2
 texture_normal = ExtResource("4_7krsh")
 
@@ -78,7 +78,7 @@ vertical_alignment = 1
 
 [node name="New game" type="TextureButton" parent="MarginContainer/VBoxContainer" unique_id=1755625881]
 texture_filter = 1
-custom_minimum_size = Vector2(128, 24)
+custom_minimum_size = Vector2(192, 32)
 layout_mode = 2
 texture_normal = ExtResource("4_7krsh")
 
@@ -97,7 +97,7 @@ vertical_alignment = 1
 
 [node name="Quit" type="TextureButton" parent="MarginContainer/VBoxContainer" unique_id=2019258914]
 texture_filter = 1
-custom_minimum_size = Vector2(128, 24)
+custom_minimum_size = Vector2(192, 32)
 layout_mode = 2
 texture_normal = ExtResource("4_7krsh")
 

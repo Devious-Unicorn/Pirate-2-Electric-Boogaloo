@@ -1,7 +1,7 @@
 extends ColorRect # Controls the ocean visual.
 
 @onready var Main = get_parent()
-@onready var Boat = get_node("../Boat") if Main.name == "Game" else null
+@onready var Boat = get_node_or_null("../Boat")
 
 @export_group("Resources")
 @export var wind_noise: FastNoiseLite
