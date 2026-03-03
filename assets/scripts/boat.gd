@@ -43,7 +43,7 @@ func _physics_process(delta: float) -> void:
 	velocity = velocity.limit_length(maxSpeed)
 	
 	# limit camera zoom
-	$Camera2D.zoom = $Camera2D.zoom.clamp(Vector2.ZERO, Vector2.ONE * 25)
+	$Camera2D.zoom = $Camera2D.zoom.clamp(Vector2.ONE * 0.25, Vector2.ONE * 10)
 	
 	move_and_slide()
 	

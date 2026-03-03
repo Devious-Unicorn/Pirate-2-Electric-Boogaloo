@@ -4,6 +4,7 @@ var noise = FastNoiseLite.new()
 @export_range(0, 1, 0.01) var sandThreshold = 0.3;
 @export var gameSize := Vector2(3840, 2160)
 @export var scale_factor: float = 1
+@export var sea_level := 0.75
 
 func _ready() -> void:
 	noise.seed = randi()
@@ -11,6 +12,7 @@ func _ready() -> void:
 	noise.fractal_type = FastNoiseLite.FRACTAL_FBM
 	noise.cellular_jitter = 1.0
 	noise.frequency = 0.001
+	noise.fractal_octaves = 5
 	_buildMesh()
 
 func _buildMesh():
@@ -20,15 +22,13 @@ func _buildMesh():
 	for y in range(gameSize.y):
 		for x in range(gameSize.x):
 			var val = noise.get_noise_2d(x, y)
-			# If noise > 0, make it opaque (Alpha 1.0)
-			# If noise <= 0, make it transparent (Alpha 0.0)
-			if val > 0:
-				img.set_pixel(x, y, Color(val, val, val, 1.0)) 
-			else:
-				img.set_pixel(x, y, Color(0, 0, 0, 0.0))
+			# Normalize -1.0...1.0 to 0.0...1.0
+			var normalized_val = (val + 1.0) / 2.0
+			# Set alpha to 1.0 so BitMap can read it
+			img.set_pixel(x, y, Color(normalized_val, normalized_val, normalized_val, 1.0))
 
 	var bitmap = BitMap.new()
-	# Now create_from_image_alpha will correctly find the islands
+	# Now 0.75 actually means "Top 25% of the noise"
 	bitmap.create_from_image_alpha(img, 0.75) 
 	
 	var polys = bitmap.opaque_to_polygons(Rect2i(0, 0, gameSize.x, gameSize.y))
@@ -110,14 +110,22 @@ func create_island_collision(points: PackedVector2Array):
 	add_child(col)
 
 func get_noise_color(v: float) -> Color:
-	# 'v' is the raw noise value (e.g., 0.5 to 1.0)
-	# Let's normalize it so 'sea level' (0.5) is 0.0 for our math
-	var sea_level = 0.5 
-	var adjusted_v = (v - sea_level) / (1.0 - sea_level)
+	# 1. First, convert noise from [-1, 1] to [0, 1] 
+	# This matches how the Image/BitMap sees the data
+	var normalized_v = (v + 1.0) / 2.0
 	
+	# 2. Now calculate how far 'above' the sea level this point is
+	# If sea_level is 0.75, this maps [0.75, 1.0] to [0.0, 1.0]
+	var adjusted_v = (normalized_v - sea_level) / (1.0 - sea_level)
+	
+	# Clamp to ensure we don't get negative numbers for very low points
+	adjusted_v = clamp(adjusted_v, 0.0, 1.0)
+
 	if adjusted_v < sandThreshold:
 		return Color(0.94, 0.82, 0.6) # Sand
 		
-	# Gradient for the rest
+	# 3. Calculate gradient for the grass
 	var t = (adjusted_v - sandThreshold) / (1.0 - sandThreshold)
+	t = clamp(t, 0.0, 1.0) # Always clamp for lerps
+	
 	return Color(0.5, 0.9, 0.2).lerp(Color(0.05, 0.3, 0.05), t)
