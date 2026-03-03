@@ -1,6 +1,5 @@
 [gd_scene format=3 uid="uid://3wm6eh5v53kp"]
 
-[ext_resource type="PackedScene" uid="uid://s25dhmbfj3it" path="res://assets/scenes/ocean.tscn" id="1_f2xsc"]
 [ext_resource type="Script" uid="uid://30uxliwtnj4m" path="res://assets/scripts/main_menu.gd" id="1_v71do"]
 [ext_resource type="Texture2D" uid="uid://3yarpak2ulb2" path="res://assets/sprites/banner.png" id="2_v71do"]
 [ext_resource type="Texture2D" uid="uid://dcqba82lnjlhi" path="res://assets/sprites/Main menu button BG.png" id="4_66en2"]
@@ -20,16 +19,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_v71do")
-
-[node name="Ocean" parent="." unique_id=1751609981 instance=ExtResource("1_f2xsc")]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_right = 0.0
-offset_bottom = 0.0
-grow_horizontal = 2
-grow_vertical = 2
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=1484712047]
 texture_filter = 1

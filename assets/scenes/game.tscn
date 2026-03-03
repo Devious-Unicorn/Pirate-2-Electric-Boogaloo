@@ -14,11 +14,7 @@ offset_right = 8000.0
 offset_bottom = 4500.0
 
 [node name="Islands" parent="." unique_id=914712744 instance=ExtResource("2_cb5na")]
-custom_minimum_size = Vector2(15360, 8640)
-offset_left = -7360.0
-offset_top = -4140.0
-offset_right = 8000.0
-offset_bottom = 4500.0
+sandThreshold = 0.1
 
 [node name="Boat" parent="." unique_id=1002307284 instance=ExtResource("1_5gf0t")]
 acceleration = 8.0
