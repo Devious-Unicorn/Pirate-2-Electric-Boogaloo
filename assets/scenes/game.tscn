@@ -14,7 +14,7 @@ offset_right = 8000.0
 offset_bottom = 4500.0
 
 [node name="Islands" parent="." unique_id=914712744 instance=ExtResource("2_cb5na")]
-noise_freq = 0.005
+noise_freq = 0.2
 
 [node name="TEST CAMERA" parent="." unique_id=1104364543 instance=ExtResource("3_5gf0t")]
-speed = 500.0
+speed = 750.0

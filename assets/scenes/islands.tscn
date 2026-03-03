@@ -1,6 +1,8 @@
 [gd_scene format=3 uid="uid://d0nq38ji0rgv2"]
 
 [ext_resource type="Script" uid="uid://lm2yy6rtgw12" path="res://assets/scripts/islands.gd" id="1_1ooc1"]
+[ext_resource type="Shader" uid="uid://dcs42vo4yn0au" path="res://assets/shaders/islands.gdshader" id="1_w2h2g"]
 
 [node name="Islands" type="StaticBody2D" unique_id=799576228]
 script = ExtResource("1_1ooc1")
+island_shader = ExtResource("1_w2h2g")

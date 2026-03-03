@@ -7,6 +7,7 @@ var noise = FastNoiseLite.new()
 @export var scale_factor: float = 8.0
 @export var sea_level: float = 0.5
 @export var noise_freq: float = 0.01
+@export var island_shader: Shader
 
 func _ready() -> void:
 	# Initialize noise using EXPORTED frequency
@@ -57,11 +58,10 @@ func create_island_mesh(points: PackedVector2Array):
 	st.begin(Mesh.PRIMITIVE_TRIANGLES)
 	
 	for p in points:
-		var val = noise.get_noise_2d(p.x, p.y)
-		# Pass value to color function
-		st.set_color(get_noise_color(val))
+		# Map the pixel coordinate to a 0-1 UV range for the shader
+		var uv = Vector2(p.x / float(gameSize.x), p.y / float(gameSize.y))
+		st.set_uv(uv)
 		
-		# Scale the position for the world
 		var final_pos = p * scale_factor
 		st.add_vertex(Vector3(final_pos.x, final_pos.y, 0))
 
@@ -71,8 +71,20 @@ func create_island_mesh(points: PackedVector2Array):
 	var mesh_instance = MeshInstance2D.new()
 	mesh_instance.mesh = st.commit()
 	
-	var mat = CanvasItemMaterial.new()
-	mat.light_mode = CanvasItemMaterial.LIGHT_MODE_UNSHADED
+	# Assign the shader from the Inspector
+	var mat = ShaderMaterial.new()
+	mat.shader = island_shader
+	
+	# Create the noise texture for the shader to read
+	var noise_tex = NoiseTexture2D.new()
+	noise_tex.noise = noise
+	noise_tex.width = gameSize.x
+	noise_tex.height = gameSize.y
+	
+	mat.set_shader_parameter("noise_tex", noise_tex)
+	mat.set_shader_parameter("sea_level", sea_level)
+	mat.set_shader_parameter("sand_threshold", sandThreshold)
+	
 	mesh_instance.material = mat
 	add_child(mesh_instance)
 
