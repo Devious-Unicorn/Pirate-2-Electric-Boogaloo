@@ -14,9 +14,10 @@ offset_right = 8000.0
 offset_bottom = 4500.0
 
 [node name="Islands" parent="." unique_id=914712744 instance=ExtResource("2_cb5na")]
-sandThreshold = 1.0
 gameSize = Vector2(480, 270)
 scale_factor = 8.0
+sea_level = 0.5
+noise_freq = 0.005
 
 [node name="Boat" parent="." unique_id=1002307284 instance=ExtResource("1_5gf0t")]
 acceleration = 8.0
