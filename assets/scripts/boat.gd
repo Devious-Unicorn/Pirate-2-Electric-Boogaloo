@@ -17,12 +17,17 @@ var wind_strength: float = 0.0
 var endl := "\n"
 
 func _ready() -> void:
-	position = Ocean.size / 2
+	position = $"../Islands".size / 2
+
+func _unhandled_input(event: InputEvent) -> void:
+	if Input.is_action_pressed("zoom in"): $Camera2D.zoom += Vector2(0.1, 0.1)
+	if Input.is_action_pressed("zoom out"): $Camera2D.zoom -= Vector2(0.1, 0.1)
+	
 
 func _physics_process(delta: float) -> void:
 	# get forces that would cause a change in velocity
 	var driveForce := _drive() * acceleration
-	var windForce := wind_direction * (wind_strength * wind_push_factor)
+	var windForce := -wind_direction * (wind_strength * wind_push_factor)
 	# add to velocity instead of setting directly to make the boat accelerate instead of moving instantly
 	velocity += (driveForce + windForce) * delta
 	
@@ -36,6 +41,9 @@ func _physics_process(delta: float) -> void:
 	
 	# limit speed to maxSpeed
 	velocity = velocity.limit_length(maxSpeed)
+	
+	# limit camera zoom
+	$Camera2D.zoom = $Camera2D.zoom.clamp(Vector2.ONE * 0.25, Vector2.ONE * 10)
 	
 	move_and_slide()
 	

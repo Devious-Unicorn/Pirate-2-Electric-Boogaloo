@@ -20,5 +20,6 @@ func playMenu():
 	add_child(scenes.playMenu)
 
 func newGame():
+	$Ocean.queue_free()
 	scenes.game = packedScenes.game.instantiate()
 	add_child(scenes.game)

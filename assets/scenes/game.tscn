@@ -1,26 +1,21 @@
 [gd_scene format=3 uid="uid://cghvp6eqijeld"]
 
-[ext_resource type="PackedScene" uid="uid://6iyri4l1xav" path="res://assets/scenes/boat.tscn" id="1_5gf0t"]
 [ext_resource type="PackedScene" uid="uid://d0nq38ji0rgv2" path="res://assets/scenes/islands.tscn" id="2_cb5na"]
+[ext_resource type="PackedScene" uid="uid://b62372ab40jl0" path="res://assets/scenes/TEST CAMERA.tscn" id="3_5gf0t"]
 [ext_resource type="PackedScene" uid="uid://s25dhmbfj3it" path="res://assets/scenes/ocean.tscn" id="3_j62u1"]
 
 [node name="Game" type="Node2D" unique_id=771860513]
 
 [node name="Ocean" parent="." unique_id=1751609981 instance=ExtResource("3_j62u1")]
-custom_minimum_size = Vector2(15360, 8640)
-offset_left = -7360.0
-offset_top = -4140.0
-offset_right = 8000.0
-offset_bottom = 4500.0
+offset_right = 0.0
+offset_bottom = 0.0
 
 [node name="Islands" parent="." unique_id=914712744 instance=ExtResource("2_cb5na")]
-custom_minimum_size = Vector2(15360, 8640)
-offset_left = -7360.0
-offset_top = -4140.0
-offset_right = 8000.0
-offset_bottom = 4500.0
+sandThreshold = 0.67
+sea_level = 0.3700000000000001
+scale_factor = 32.0
+noise_freq = 0.03
+octaves = 1
 
-[node name="Boat" parent="." unique_id=1002307284 instance=ExtResource("1_5gf0t")]
-acceleration = 8.0
-friction = 1.5
-wind_push_factor = 2.5
+[node name="TEST CAMERA" parent="." unique_id=1104364543 instance=ExtResource("3_5gf0t")]
+speed = 750.0

@@ -1,7 +1,8 @@
 extends ColorRect # Controls the ocean visual.
 
 @onready var Main = get_parent()
-@onready var Boat = get_node("../Boat") if Main.name == "Game" else null
+@onready var Boat = get_node_or_null("../Boat")
+@onready var Islands = get_node_or_null("../Islands")
 
 @export_group("Resources")
 @export var wind_noise: FastNoiseLite
@@ -18,6 +19,7 @@ var current_offset: Vector2 = Vector2.ZERO # Total movement "memory" passed to t
 var time_passed: float = 0.0               # Clock to track noise sampling over time.
 
 func _ready() -> void:
+	size = Vector2(Islands.gameSize.x * Islands.scale_factor,Islands.gameSize.y * Islands.scale_factor)
 	if not wind_noise: # Create a noise generator if one isn't assigned.
 		wind_noise = FastNoiseLite.new()
 		wind_noise.seed = randi() # Unique seed for every session.

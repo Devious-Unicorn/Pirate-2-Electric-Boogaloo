@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://b62372ab40jl0"]
+
+[ext_resource type="Script" uid="uid://d2ew8hmcrgdik" path="res://assets/scripts/TEST CAMERA.gd" id="1_n0g7j"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p1ytj"]
+size = Vector2(16, 16)
+
+[node name="TEST CAMERA" type="CharacterBody2D" unique_id=1104364543]
+script = ExtResource("1_n0g7j")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=480869741]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=834604115]
+shape = SubResource("RectangleShape2D_p1ytj")
+disabled = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1790336769]
+
+[node name="Label" type="Label" parent="CanvasLayer" unique_id=741300852]
+offset_right = 40.0
+offset_bottom = 23.0
