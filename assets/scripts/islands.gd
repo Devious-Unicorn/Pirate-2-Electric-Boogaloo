@@ -2,19 +2,26 @@ extends StaticBody2D
 
 var noise = FastNoiseLite.new()
 
+@export_group("Generation values")
 @export_range(0, 1, 0.01) var sandThreshold: float = 0.05
+@export_range(-1, 1, 0.01) var sea_level = 0.5
+
+@export_group("Game Parameters")
 @export var gameSize := Vector2i(480, 270) # Use smaller size for BitMap speed
 @export var scale_factor: float = 8.0
-@export var sea_level: float = 0.5
 @export var noise_freq: float = 0.01
+@export var octaves: int = 3
+
 @export var island_shader: Shader
 
 func _ready() -> void:
 	# Initialize noise using EXPORTED frequency
 	noise.seed = randi()
-	noise.noise_type = FastNoiseLite.TYPE_PERLIN
+	noise.noise_type = FastNoiseLite.TYPE_CELLULAR
+	noise.cellular_distance_function = FastNoiseLite.DISTANCE_EUCLIDEAN
+	noise.cellular_return_type = FastNoiseLite.RETURN_DISTANCE2_ADD
 	noise.frequency = noise_freq
-	noise.fractal_octaves = 5
+	noise.fractal_octaves = octaves
 	_buildMesh()
 
 func _buildMesh():
@@ -24,13 +31,12 @@ func _buildMesh():
 	for y in range(gameSize.y):
 		for x in range(gameSize.x):
 			var val = noise.get_noise_2d(x, y)
-			var normalized_val = (val + 1.0) / 2.0
+			var normalized_val = (val + 1) / 2
 			
-			# Use the EXPORTED sea_level to define land
 			if normalized_val > sea_level:
-				img.set_pixel(x, y, Color(1, 1, 1, 1.0)) 
+				img.set_pixel(x, y, Color(1, 1, 1, 1)) # Land
 			else:
-				img.set_pixel(x, y, Color(0, 0, 0, 0.0))
+				img.set_pixel(x, y, Color(0, 0, 0, 0)) # Water
 
 	var bitmap = BitMap.new()
 	bitmap.create_from_image_alpha(img, 0.5) 
@@ -41,10 +47,11 @@ func _buildMesh():
 	for child in get_children():
 		if child is MeshInstance2D or child is CollisionPolygon2D:
 			child.queue_free()
-
+	print("Islands found: ", str(polys.size()))
 	for poly in polys:
 		if poly.size() < 3: continue
-		var cleaned = Geometry2D.offset_polygon(poly, -0.1)
+		var cleaned = Geometry2D.offset_polygon(poly, 1.0, Geometry2D.JOIN_ROUND) # Slightly inflate
+		cleaned = Geometry2D.offset_polygon(cleaned[0], -1.1, Geometry2D.JOIN_ROUND) # Shrink back
 		for final_poly in cleaned:
 			if final_poly.size() < 3: continue
 			create_island_mesh(final_poly)

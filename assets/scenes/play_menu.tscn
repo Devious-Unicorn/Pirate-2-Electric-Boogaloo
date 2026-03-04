@@ -61,6 +61,8 @@ size_flags_vertical = 3
 texture_filter = 1
 custom_minimum_size = Vector2(192, 32)
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 texture_normal = ExtResource("4_7krsh")
 
 [node name="Label" type="Label" parent="MarginContainer/VBoxContainer/Load game" unique_id=1431236973]
@@ -80,6 +82,8 @@ vertical_alignment = 1
 texture_filter = 1
 custom_minimum_size = Vector2(192, 32)
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 texture_normal = ExtResource("4_7krsh")
 
 [node name="Label" type="Label" parent="MarginContainer/VBoxContainer/New game" unique_id=1443670877]
@@ -99,6 +103,8 @@ vertical_alignment = 1
 texture_filter = 1
 custom_minimum_size = Vector2(192, 32)
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 texture_normal = ExtResource("4_7krsh")
 
 [node name="Label" type="Label" parent="MarginContainer/VBoxContainer/Quit" unique_id=687552350]

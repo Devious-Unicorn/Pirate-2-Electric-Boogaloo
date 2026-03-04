@@ -7,14 +7,15 @@
 [node name="Game" type="Node2D" unique_id=771860513]
 
 [node name="Ocean" parent="." unique_id=1751609981 instance=ExtResource("3_j62u1")]
-custom_minimum_size = Vector2(15360, 8640)
-offset_left = -7360.0
-offset_top = -4140.0
-offset_right = 8000.0
-offset_bottom = 4500.0
+offset_right = 0.0
+offset_bottom = 0.0
 
 [node name="Islands" parent="." unique_id=914712744 instance=ExtResource("2_cb5na")]
-noise_freq = 0.2
+sandThreshold = 0.67
+sea_level = 0.3999999999999999
+scale_factor = 32.0
+noise_freq = 0.03
+octaves = 1
 
 [node name="TEST CAMERA" parent="." unique_id=1104364543 instance=ExtResource("3_5gf0t")]
 speed = 750.0
