@@ -18,7 +18,8 @@ var wind_direction: Vector2 = Vector2.ZERO
 var wind_strength: float = 0.0
 var endl := "\n"
 
-#func _ready() -> void:
+func _ready() -> void:
+	global_position = Vector2.ZERO
 	#global_position = islandSize / 2
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -53,16 +54,16 @@ func _physics_process(delta: float) -> void:
 	if position.x > islandSize.x: 
 		global_position.x -= islandSize.x
 		Ocean.current_offset.x += islandSize.x / 2
-	if position.x < islandSize.x: 
+	if position.x < 0: 
 		global_position.x += islandSize.x
 		Ocean.current_offset.x -= islandSize.x / 2
 	if position.y > islandSize.y: 
 		global_position.y -= islandSize.y
 		Ocean.current_offset.y += islandSize.y / 2
-	if position.y < islandSize.y: 
+	if position.y < 0: 
 		global_position.y += islandSize.y
 		Ocean.current_offset.y -= islandSize.y / 2
-	$CanvasLayer/Label.text = str(position)
+	$CanvasLayer/Label.text = str(position) + endl + str(islandSize)
 	print(get_last_slide_collision())
 
 func _drive() -> Vector2:

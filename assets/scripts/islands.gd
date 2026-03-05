@@ -112,23 +112,23 @@ func _buildMesh():
 func create_island_collision(points: PackedVector2Array):
 	if points.size() < 3: return
 	
+	# 1. Scale points to match the world visually
 	var scaled_points = PackedVector2Array()
 	for p in points:
 		scaled_points.append(p * scale_factor)
 
-	# Winding order is crucial for BUILD_SOLIDS
+	# 2. Ensure correct winding (Required for some physics solvers)
 	if not Geometry2D.is_polygon_clockwise(scaled_points):
 		scaled_points.reverse()
-	
-	# We must handle the ARRAY returned by offset_polygon
+
+	# 3. Clean the polygon (Removes self-intersections from the noise)
 	var cleaned_polys = Geometry2D.offset_polygon(scaled_points, 0.0)
 	
+	# 4. Create a collider for each resulting shape
 	for poly in cleaned_polys:
 		var col := CollisionPolygon2D.new()
-		# TRY THIS: Switch to BUILD_SEGMENTS temporarily. 
-		# If segments work but solids don't, your polygon is self-intersecting.
 		col.build_mode = CollisionPolygon2D.BUILD_SOLIDS
 		col.polygon = poly
 		add_child(col)
-		# In Godot 4, don't set owner to self for procedurally generated children 
-		# unless you intend to save the scene. It can cause registration delays.
+		# Deferring owner helps avoid 'node not found' errors during generation
+		col.set_deferred("owner", self) 
