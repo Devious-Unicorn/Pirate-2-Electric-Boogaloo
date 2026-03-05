@@ -4,6 +4,9 @@
 [ext_resource type="PackedScene" uid="uid://6iyri4l1xav" path="res://assets/scenes/boat.tscn" id="3_5gf0t"]
 [ext_resource type="PackedScene" uid="uid://s25dhmbfj3it" path="res://assets/scenes/ocean.tscn" id="3_j62u1"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5gf0t"]
+size = Vector2(64, 64)
+
 [node name="Game" type="Node2D" unique_id=771860513]
 
 [node name="Ocean" parent="." unique_id=1751609981 instance=ExtResource("3_j62u1")]
@@ -18,3 +21,9 @@ noise_freq = 0.03
 octaves = 1
 
 [node name="Boat" parent="." unique_id=1002307284 instance=ExtResource("3_5gf0t")]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=409170536]
+position = Vector2(7000, 4000)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=332725685]
+shape = SubResource("RectangleShape2D_5gf0t")

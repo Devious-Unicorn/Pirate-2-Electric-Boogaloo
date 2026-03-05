@@ -26,10 +26,14 @@ func _ready() -> void:
 
 func _buildMesh():
 	# Use the EXPORTED gameSize
-	var img = Image.create(gameSize.x, gameSize.y, false, Image.FORMAT_RGBA8)
+	var img = Image.create_empty(gameSize.x, gameSize.y, false, Image.FORMAT_RGBA8)
 	
 	for y in range(gameSize.y):
 		for x in range(gameSize.x):
+			# if at edge, set to water to try to fix problem with no collision working
+			if x == 0 or y == 0 or x == gameSize.x - 1 or y == gameSize.y - 1:
+				img.set_pixel(x, y, Color(0, 0, 0, 0))
+				continue
 			var val = noise.get_noise_2d(x, y)
 			# normalize the noise range from [-1, 1] to [0, 1]
 			var normalized_val = (val + 1) / 2
@@ -41,8 +45,12 @@ func _buildMesh():
 
 	var bitmap = BitMap.new()
 	bitmap.create_from_image_alpha(img, 0.5) 
-	
 	var polys = bitmap.opaque_to_polygons(Rect2i(0, 0, gameSize.x, gameSize.y))
+	print("Polygons found: ", polys.size())
+	
+	for child in get_children():
+		if child is CollisionPolygon2D:
+			child.free()
 	
 	var st = SurfaceTool.new()
 	st.begin(Mesh.PRIMITIVE_TRIANGLES)
@@ -97,31 +105,30 @@ func _buildMesh():
 	
 	mesh.material = mat
 	add_child(mesh)
+	
+	self.collision_layer = 1
+	self.collision_mask = 0
 
 func create_island_collision(points: PackedVector2Array):
 	if points.size() < 3: return
 	
-	# Scale points
 	var scaled_points = PackedVector2Array()
 	for p in points:
 		scaled_points.append(p * scale_factor)
 
-	# Ensure correct winding order
+	# Winding order is crucial for BUILD_SOLIDS
 	if not Geometry2D.is_polygon_clockwise(scaled_points):
 		scaled_points.reverse()
 	
-	# Offsetting by 0.0 'welds' vertices and removes self-intersections
-	var cleaned = Geometry2D.offset_polygon(scaled_points, 0.0)
-	if cleaned.is_empty(): return
-	scaled_points = cleaned
+	# We must handle the ARRAY returned by offset_polygon
+	var cleaned_polys = Geometry2D.offset_polygon(scaled_points, 0.0)
 	
-	var col = CollisionPolygon2D.new()
-	col.build_mode = CollisionPolygon2D.BUILD_SOLIDS
-	col.polygon = scaled_points 
-	
-	add_child(col)
-	# This line tells Godot to look at this node for physics right now
-	col.owner = self 
-	
-	if col.polygon.size() == 0: printerr("Collision polygon has 0 points")
-	print("Collision created at: ", scaled_points[0])
+	for poly in cleaned_polys:
+		var col := CollisionPolygon2D.new()
+		# TRY THIS: Switch to BUILD_SEGMENTS temporarily. 
+		# If segments work but solids don't, your polygon is self-intersecting.
+		col.build_mode = CollisionPolygon2D.BUILD_SOLIDS
+		col.polygon = poly
+		add_child(col)
+		# In Godot 4, don't set owner to self for procedurally generated children 
+		# unless you intend to save the scene. It can cause registration delays.

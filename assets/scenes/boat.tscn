@@ -9,6 +9,8 @@ radius = 6.0
 
 [node name="Boat" type="CharacterBody2D" unique_id=1002307284]
 texture_filter = 1
+collision_layer = 2
+motion_mode = 1
 script = ExtResource("1_5u0pl")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1602075657]
