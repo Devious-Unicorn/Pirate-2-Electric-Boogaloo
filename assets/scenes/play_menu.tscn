@@ -2,13 +2,8 @@
 
 [ext_resource type="Script" uid="uid://rttuvt2dqmms" path="res://assets/scripts/play_menu.gd" id="1_v1pyc"]
 [ext_resource type="Texture2D" uid="uid://3yarpak2ulb2" path="res://assets/sprites/banner.png" id="3_utk1u"]
+[ext_resource type="Theme" uid="uid://bk58pxqy4qadm" path="res://assets/themes/Button Text.tres" id="4_0dkxv"]
 [ext_resource type="Texture2D" uid="uid://dcqba82lnjlhi" path="res://assets/sprites/Main menu button BG.png" id="4_7krsh"]
-[ext_resource type="FontFile" uid="uid://8aaaattnuvu4" path="res://assets/fonts/aladin/Aladin-Regular.ttf" id="5_olgq0"]
-
-[sub_resource type="Theme" id="Theme_ukq0b"]
-Label/constants/outline_size = 3
-Label/font_sizes/font_size = 32
-Label/fonts/font = ExtResource("5_olgq0")
 
 [node name="Play menu" type="Control" unique_id=1093046807]
 layout_mode = 3
@@ -73,7 +68,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = SubResource("Theme_ukq0b")
+theme = ExtResource("4_0dkxv")
 text = "Load Game"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -94,7 +89,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = SubResource("Theme_ukq0b")
+theme = ExtResource("4_0dkxv")
 text = "New Game"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -115,7 +110,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = SubResource("Theme_ukq0b")
+theme = ExtResource("4_0dkxv")
 text = "Quit"
 horizontal_alignment = 1
 vertical_alignment = 1

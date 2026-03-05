@@ -19,8 +19,8 @@ var wind_strength: float = 0.0
 var endl := "\n"
 
 func _ready() -> void:
-	global_position = Vector2.ZERO
-	#global_position = islandSize / 2
+	#global_position = Vector2.ZERO
+	global_position = islandSize / 2
 
 func _unhandled_input(event: InputEvent) -> void:
 	if Input.is_action_pressed("zoom in"): $Camera2D.zoom += Vector2.ONE * 0.1
@@ -63,8 +63,6 @@ func _physics_process(delta: float) -> void:
 	if position.y < 0: 
 		global_position.y += islandSize.y
 		Ocean.current_offset.y -= islandSize.y / 2
-	$CanvasLayer/Label.text = str(position) + endl + str(islandSize)
-	print(get_last_slide_collision())
 
 func _drive() -> Vector2:
 	var input = Input.get_vector("left", "right", "up", "down")

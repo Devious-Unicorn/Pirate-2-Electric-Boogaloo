@@ -1,0 +1,8 @@
+[gd_resource type="Theme" format=3 uid="uid://bk58pxqy4qadm"]
+
+[ext_resource type="FontFile" uid="uid://8aaaattnuvu4" path="res://assets/fonts/aladin/Aladin-Regular.ttf" id="1_xbkhy"]
+
+[resource]
+Label/constants/outline_size = 6
+Label/font_sizes/font_size = 24
+Label/fonts/font = ExtResource("1_xbkhy")
