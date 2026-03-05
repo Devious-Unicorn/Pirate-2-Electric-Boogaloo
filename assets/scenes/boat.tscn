@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://b71ygtvs6j567" path="res://assets/scripts/boat.gd" id="1_5u0pl"]
 [ext_resource type="Texture2D" uid="uid://dg11mlh4mycnq" path="res://assets/sprites/Boat 32x32.png" id="1_e3ff2"]
+[ext_resource type="Script" uid="uid://b3r3t7k4et481" path="res://assets/scripts/sub_viewport.gd" id="3_co85y"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5u0pl"]
 radius = 6.0
@@ -25,3 +26,23 @@ disabled = true
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=662830989]
 texture_filter = 1
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1424099456]
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="CanvasLayer" unique_id=1894609149]
+offset_left = 480.0
+offset_right = 640.0
+offset_bottom = 90.0
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="CanvasLayer/SubViewportContainer" unique_id=429112840]
+handle_input_locally = false
+size = Vector2i(160, 90)
+render_target_update_mode = 4
+script = ExtResource("3_co85y")
+
+[node name="Minimap camera" type="Camera2D" parent="CanvasLayer/SubViewportContainer/SubViewport" unique_id=1248233872]
+
+[node name="Label" type="Label" parent="CanvasLayer" unique_id=1062523834]
+offset_right = 40.0
+offset_bottom = 23.0

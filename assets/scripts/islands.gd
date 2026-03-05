@@ -73,7 +73,7 @@ func _buildMesh():
 			
 			vertexOffset += finalPoly.size()
 			
-			# keep collision inside the loop as physics work when it is multiple islands
+			# keep collision inside the loop as physics work better when it is multiple islands
 			create_island_collision(finalPoly)
 	
 	# commit whole surface tool to one mesh to improve performance over making a whole mesh for each island
@@ -99,28 +99,29 @@ func _buildMesh():
 	add_child(mesh)
 
 func create_island_collision(points: PackedVector2Array):
+	if points.size() < 3: return
+	
+	# Scale points
 	var scaled_points = PackedVector2Array()
 	for p in points:
 		scaled_points.append(p * scale_factor)
-		
-	var col = CollisionPolygon2D.new()
-	col.build_mode = CollisionPolygon2D.BUILD_SEGMENTS
-	col.polygon = scaled_points 
-	add_child(col)
 
-func get_noise_color(v: float) -> Color:
-	var normalized_v = (v + 1.0) / 2.0
+	# Ensure correct winding order
+	if not Geometry2D.is_polygon_clockwise(scaled_points):
+		scaled_points.reverse()
 	
-	# Uses EXPORTED sea_level dynamically
-	var adjusted_v = (normalized_v - sea_level) / (1.0 - sea_level)
-	adjusted_v = clamp(adjusted_v, 0.0, 1.0)
-
-	# Uses EXPORTED sandThreshold dynamically
-	if adjusted_v < sandThreshold: 
-		print("sand")
-		return Color(0.94, 0.82, 0.6) # Sand
-		
-	var t = (adjusted_v - sandThreshold) / (1.0 - sandThreshold)
-	t = clamp(t, 0, 1)
-	print("grass:\t", str(Color(0.5, 0.9, 0.2).lerp(Color(0.05, 0.3, 0.05), t)))
-	return Color(0.5, 0.9, 0.2).lerp(Color(0.05, 0.3, 0.05), t)
+	# Offsetting by 0.0 'welds' vertices and removes self-intersections
+	var cleaned = Geometry2D.offset_polygon(scaled_points, 0.0)
+	if cleaned.is_empty(): return
+	scaled_points = cleaned
+	
+	var col = CollisionPolygon2D.new()
+	col.build_mode = CollisionPolygon2D.BUILD_SOLIDS
+	col.polygon = scaled_points 
+	
+	add_child(col)
+	# This line tells Godot to look at this node for physics right now
+	col.owner = self 
+	
+	if col.polygon.size() == 0: printerr("Collision polygon has 0 points")
+	print("Collision created at: ", scaled_points[0])

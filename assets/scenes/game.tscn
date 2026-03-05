@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cghvp6eqijeld"]
 
 [ext_resource type="PackedScene" uid="uid://d0nq38ji0rgv2" path="res://assets/scenes/islands.tscn" id="2_cb5na"]
-[ext_resource type="PackedScene" uid="uid://b62372ab40jl0" path="res://assets/scenes/TEST CAMERA.tscn" id="3_5gf0t"]
+[ext_resource type="PackedScene" uid="uid://6iyri4l1xav" path="res://assets/scenes/boat.tscn" id="3_5gf0t"]
 [ext_resource type="PackedScene" uid="uid://s25dhmbfj3it" path="res://assets/scenes/ocean.tscn" id="3_j62u1"]
 
 [node name="Game" type="Node2D" unique_id=771860513]
@@ -17,5 +17,4 @@ scale_factor = 32.0
 noise_freq = 0.03
 octaves = 1
 
-[node name="TEST CAMERA" parent="." unique_id=1104364543 instance=ExtResource("3_5gf0t")]
-speed = 750.0
+[node name="Boat" parent="." unique_id=1002307284 instance=ExtResource("3_5gf0t")]

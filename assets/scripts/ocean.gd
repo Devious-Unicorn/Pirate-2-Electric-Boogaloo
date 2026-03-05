@@ -19,7 +19,10 @@ var current_offset: Vector2 = Vector2.ZERO # Total movement "memory" passed to t
 var time_passed: float = 0.0               # Clock to track noise sampling over time.
 
 func _ready() -> void:
-	size = Vector2(Islands.gameSize.x * Islands.scale_factor,Islands.gameSize.y * Islands.scale_factor)
+	if Islands:
+		set_deferred("size", Vector2(Islands.gameSize.x * Islands.scale_factor,Islands.gameSize.y * Islands.scale_factor))
+	else: set_deferred("size", Vector2(640, 360))
+	
 	if not wind_noise: # Create a noise generator if one isn't assigned.
 		wind_noise = FastNoiseLite.new()
 		wind_noise.seed = randi() # Unique seed for every session.
