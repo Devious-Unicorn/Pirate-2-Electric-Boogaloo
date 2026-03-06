@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://b71ygtvs6j567" path="res://assets/scripts/boat.gd" id="1_5u0pl"]
 [ext_resource type="Texture2D" uid="uid://dg11mlh4mycnq" path="res://assets/sprites/Boat 32x32.png" id="1_e3ff2"]
 [ext_resource type="Script" uid="uid://b3r3t7k4et481" path="res://assets/scripts/sub_viewport.gd" id="3_co85y"]
+[ext_resource type="Texture2D" uid="uid://dxrq462y87v28" path="res://assets/sprites/Minimap border.png" id="3_rx8mf"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5u0pl"]
 radius = 6.0
@@ -35,21 +36,36 @@ texture_filter = 1
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1424099456]
 
-[node name="SubViewportContainer" type="SubViewportContainer" parent="CanvasLayer" unique_id=1894609149]
-offset_left = 480.0
-offset_right = 640.0
-offset_bottom = 90.0
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer" unique_id=536984197]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -174.08
+offset_bottom = 97.92
+grow_horizontal = 0
+
+[node name="Minimap border" type="TextureRect" parent="CanvasLayer/CenterContainer" unique_id=2009705350]
+custom_minimum_size = Vector2(174.08, 97.92)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+texture = ExtResource("3_rx8mf")
+expand_mode = 1
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="CanvasLayer/CenterContainer" unique_id=1894609149]
+custom_minimum_size = Vector2(160, 90)
+layout_mode = 2
 stretch = true
 
-[node name="SubViewport" type="SubViewport" parent="CanvasLayer/SubViewportContainer" unique_id=429112840 node_paths=PackedStringArray("Boat", "MinimapIcon")]
+[node name="SubViewport" type="SubViewport" parent="CanvasLayer/CenterContainer/SubViewportContainer" unique_id=429112840 node_paths=PackedStringArray("Boat", "MinimapIcon")]
 handle_input_locally = false
 size = Vector2i(160, 90)
 render_target_update_mode = 4
 script = ExtResource("3_co85y")
-Boat = NodePath("../../..")
-MinimapIcon = NodePath("../../../Minimap icon")
+Boat = NodePath("../../../..")
+MinimapIcon = NodePath("../../../../Minimap icon")
 
-[node name="Minimap camera" type="Camera2D" parent="CanvasLayer/SubViewportContainer/SubViewport" unique_id=1248233872]
+[node name="Minimap camera" type="Camera2D" parent="CanvasLayer/CenterContainer/SubViewportContainer/SubViewport" unique_id=1248233872]
 
 [node name="Label" type="Label" parent="CanvasLayer" unique_id=1062523834]
 offset_right = 40.0
