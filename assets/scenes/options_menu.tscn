@@ -1,11 +1,27 @@
 [gd_scene format=3 uid="uid://cnwi1710488ub"]
 
+[ext_resource type="Script" uid="uid://c33hbd3vf17kc" path="res://assets/scripts/options_menu.gd" id="1_nvxrx"]
+[ext_resource type="Theme" uid="uid://bk58pxqy4qadm" path="res://assets/themes/Button Text.tres" id="2_1bfk6"]
+[ext_resource type="FontFile" uid="uid://8aaaattnuvu4" path="res://assets/fonts/aladin/Aladin-Regular.ttf" id="3_ehycp"]
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d2ku8"]
 bg_color = Color(0.09955944, 0.09955944, 0.115290664, 0.24705882)
+border_width_left = 16
+border_width_top = 16
+border_width_right = 16
+border_width_bottom = 16
+border_color = Color(0.09803922, 0.09803922, 0.11372549, 0.24705882)
+border_blend = true
 corner_radius_top_left = 32
 corner_radius_top_right = 32
 corner_radius_bottom_right = 32
 corner_radius_bottom_left = 32
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_fbxol"]
+color = Color(0.33333334, 0.33333334, 0.33333334, 1)
+thickness = 2
+
+[sub_resource type="Theme" id="Theme_bmgr2"]
 
 [node name="Options menu" type="Control" unique_id=1004675623]
 layout_mode = 3
@@ -14,6 +30,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_nvxrx")
 
 [node name="PanelContainer" type="PanelContainer" parent="." unique_id=800698855]
 texture_filter = 1
@@ -25,3 +42,303 @@ offset_right = 672.0
 offset_bottom = 378.0
 scale = Vector2(0.9, 0.9)
 theme_override_styles/panel = SubResource("StyleBoxFlat_d2ku8")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer" unique_id=859442800]
+layout_mode = 2
+
+[node name="Drive north" type="HBoxContainer" parent="PanelContainer/VBoxContainer" unique_id=571495113]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/VBoxContainer/Drive north" unique_id=1199049966]
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("2_1bfk6")
+text = "Drive north:"
+
+[node name="Control" type="Control" parent="PanelContainer/VBoxContainer/Drive north" unique_id=493966548]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ctrl" type="Button" parent="PanelContainer/VBoxContainer/Drive north" unique_id=1534579108]
+custom_minimum_size = Vector2(96, 24)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+tooltip_text = "Primary input"
+theme_override_fonts/font = ExtResource("3_ehycp")
+text = "Not Set"
+
+[node name="Control2" type="Control" parent="PanelContainer/VBoxContainer/Drive north" unique_id=56064027]
+custom_minimum_size = Vector2(191, 0)
+layout_mode = 2
+
+[node name="ctrl2" type="Button" parent="PanelContainer/VBoxContainer/Drive north" unique_id=875688743]
+custom_minimum_size = Vector2(96, 24)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+tooltip_text = "Secondary input"
+theme_override_fonts/font = ExtResource("3_ehycp")
+text = "Not Set"
+
+[node name="Drive south" type="HBoxContainer" parent="PanelContainer/VBoxContainer" unique_id=839293387]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/VBoxContainer/Drive south" unique_id=1782647316]
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("2_1bfk6")
+text = "Drive south:"
+
+[node name="Control" type="Control" parent="PanelContainer/VBoxContainer/Drive south" unique_id=439942845]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ctrl" type="Button" parent="PanelContainer/VBoxContainer/Drive south" unique_id=290726582]
+custom_minimum_size = Vector2(96, 24)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+tooltip_text = "Primary input"
+theme_override_fonts/font = ExtResource("3_ehycp")
+text = "Not Set"
+
+[node name="Control2" type="Control" parent="PanelContainer/VBoxContainer/Drive south" unique_id=1060032645]
+custom_minimum_size = Vector2(191, 0)
+layout_mode = 2
+
+[node name="ctrl2" type="Button" parent="PanelContainer/VBoxContainer/Drive south" unique_id=1047863308]
+custom_minimum_size = Vector2(96, 24)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+tooltip_text = "Secondary input"
+theme_override_fonts/font = ExtResource("3_ehycp")
+text = "Not Set"
+
+[node name="Drive west" type="HBoxContainer" parent="PanelContainer/VBoxContainer" unique_id=766776131]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/VBoxContainer/Drive west" unique_id=1079480147]
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("2_1bfk6")
+text = "Drive west:"
+
+[node name="Control" type="Control" parent="PanelContainer/VBoxContainer/Drive west" unique_id=434704840]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ctrl" type="Button" parent="PanelContainer/VBoxContainer/Drive west" unique_id=838373637]
+custom_minimum_size = Vector2(96, 24)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+tooltip_text = "Primary input"
+theme_override_fonts/font = ExtResource("3_ehycp")
+text = "Not Set"
+
+[node name="Control2" type="Control" parent="PanelContainer/VBoxContainer/Drive west" unique_id=1246584691]
+custom_minimum_size = Vector2(191, 0)
+layout_mode = 2
+
+[node name="ctrl2" type="Button" parent="PanelContainer/VBoxContainer/Drive west" unique_id=1789282485]
+custom_minimum_size = Vector2(96, 24)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+tooltip_text = "Secondary input"
+theme_override_fonts/font = ExtResource("3_ehycp")
+text = "Not Set"
+
+[node name="Drive east" type="HBoxContainer" parent="PanelContainer/VBoxContainer" unique_id=141564966]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/VBoxContainer/Drive east" unique_id=350286888]
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("2_1bfk6")
+text = "Drive east:"
+
+[node name="Control" type="Control" parent="PanelContainer/VBoxContainer/Drive east" unique_id=1762120559]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ctrl" type="Button" parent="PanelContainer/VBoxContainer/Drive east" unique_id=1753990019]
+custom_minimum_size = Vector2(96, 24)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+tooltip_text = "Primary input"
+theme_override_fonts/font = ExtResource("3_ehycp")
+text = "Not Set"
+
+[node name="Control2" type="Control" parent="PanelContainer/VBoxContainer/Drive east" unique_id=1803233749]
+custom_minimum_size = Vector2(191, 0)
+layout_mode = 2
+
+[node name="ctrl2" type="Button" parent="PanelContainer/VBoxContainer/Drive east" unique_id=32841102]
+custom_minimum_size = Vector2(96, 24)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+tooltip_text = "Secondary input"
+theme_override_fonts/font = ExtResource("3_ehycp")
+text = "Not Set"
+
+[node name="Zoom cam in" type="HBoxContainer" parent="PanelContainer/VBoxContainer" unique_id=1199068266]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/VBoxContainer/Zoom cam in" unique_id=958702109]
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("2_1bfk6")
+text = "Zoom camera in:"
+
+[node name="Control" type="Control" parent="PanelContainer/VBoxContainer/Zoom cam in" unique_id=163201500]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ctrl" type="Button" parent="PanelContainer/VBoxContainer/Zoom cam in" unique_id=1652886216]
+custom_minimum_size = Vector2(96, 24)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+tooltip_text = "Primary input"
+theme_override_fonts/font = ExtResource("3_ehycp")
+text = "Not Set"
+
+[node name="Control2" type="Control" parent="PanelContainer/VBoxContainer/Zoom cam in" unique_id=953141355]
+custom_minimum_size = Vector2(191, 0)
+layout_mode = 2
+
+[node name="ctrl2" type="Button" parent="PanelContainer/VBoxContainer/Zoom cam in" unique_id=60355967]
+custom_minimum_size = Vector2(96, 24)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+tooltip_text = "Secondary input"
+theme_override_fonts/font = ExtResource("3_ehycp")
+text = "Not Set"
+
+[node name="Zoom cam out" type="HBoxContainer" parent="PanelContainer/VBoxContainer" unique_id=604396578]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/VBoxContainer/Zoom cam out" unique_id=1570422752]
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("2_1bfk6")
+text = "Zoom camera out:"
+
+[node name="Control" type="Control" parent="PanelContainer/VBoxContainer/Zoom cam out" unique_id=1550109152]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ctrl" type="Button" parent="PanelContainer/VBoxContainer/Zoom cam out" unique_id=2138162524]
+custom_minimum_size = Vector2(96, 24)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+tooltip_text = "Primary input"
+theme_override_fonts/font = ExtResource("3_ehycp")
+text = "Not Set"
+
+[node name="Control2" type="Control" parent="PanelContainer/VBoxContainer/Zoom cam out" unique_id=1919126848]
+custom_minimum_size = Vector2(191, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ctrl2" type="Button" parent="PanelContainer/VBoxContainer/Zoom cam out" unique_id=1064945032]
+custom_minimum_size = Vector2(96, 24)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+tooltip_text = "Secondary input"
+theme_override_fonts/font = ExtResource("3_ehycp")
+text = "Not Set"
+
+[node name="HSeparator" type="HSeparator" parent="PanelContainer/VBoxContainer" unique_id=1821782942]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxLine_fbxol")
+
+[node name="Master volume" type="HBoxContainer" parent="PanelContainer/VBoxContainer" unique_id=1661691162]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/VBoxContainer/Master volume" unique_id=1641118688]
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("2_1bfk6")
+text = "Master audio volume:"
+
+[node name="Control" type="Control" parent="PanelContainer/VBoxContainer/Master volume" unique_id=643610257]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ctrl" type="HSlider" parent="PanelContainer/VBoxContainer/Master volume" unique_id=688914869]
+custom_minimum_size = Vector2(256, 32)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = SubResource("Theme_bmgr2")
+value = 100.0
+
+[node name="Control2" type="Control" parent="PanelContainer/VBoxContainer/Master volume" unique_id=1767324276]
+custom_minimum_size = Vector2(84, 0)
+layout_mode = 2
+
+[node name="BGM" type="HBoxContainer" parent="PanelContainer/VBoxContainer" unique_id=1495331814]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/VBoxContainer/BGM" unique_id=322676485]
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("2_1bfk6")
+text = "Background music vaolume:"
+
+[node name="Control" type="Control" parent="PanelContainer/VBoxContainer/BGM" unique_id=1525930146]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ctrl" type="HSlider" parent="PanelContainer/VBoxContainer/BGM" unique_id=500813752]
+custom_minimum_size = Vector2(256, 32)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+value = 100.0
+
+[node name="Control2" type="Control" parent="PanelContainer/VBoxContainer/BGM" unique_id=6610016]
+custom_minimum_size = Vector2(84, 0)
+layout_mode = 2
+
+[node name="Ambience" type="HBoxContainer" parent="PanelContainer/VBoxContainer" unique_id=119821909]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/VBoxContainer/Ambience" unique_id=466249937]
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("2_1bfk6")
+text = "Ambient audio volume:"
+
+[node name="Control" type="Control" parent="PanelContainer/VBoxContainer/Ambience" unique_id=1929542502]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ctrl" type="HSlider" parent="PanelContainer/VBoxContainer/Ambience" unique_id=2084762561]
+custom_minimum_size = Vector2(256, 32)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+value = 100.0
+
+[node name="Control2" type="Control" parent="PanelContainer/VBoxContainer/Ambience" unique_id=1963917223]
+custom_minimum_size = Vector2(84, 0)
+layout_mode = 2
