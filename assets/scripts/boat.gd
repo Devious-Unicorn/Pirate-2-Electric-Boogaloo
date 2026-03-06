@@ -63,6 +63,7 @@ func _physics_process(delta: float) -> void:
 	if position.y < 0: 
 		global_position.y += islandSize.y
 		Ocean.current_offset.y -= islandSize.y / 2
+	$CanvasLayer/Label.text = str(position)
 
 func _drive() -> Vector2:
 	var input = Input.get_vector("left", "right", "up", "down")

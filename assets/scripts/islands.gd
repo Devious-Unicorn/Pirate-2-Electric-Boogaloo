@@ -9,20 +9,30 @@ var noise = FastNoiseLite.new()
 @export_group("Game Parameters")
 @export var gameSize := Vector2i(480, 270) # Use smaller size for BitMap speed
 @export var scale_factor: float = 8.0
+@export var noise_seed = null
 @export var noise_freq: float = 0.01
 @export var octaves: int = 3
 
 @export var island_shader: Shader
 
+signal generationComplete
+
+var is_clone := false;
+
 func _ready() -> void:
+	if is_clone: return
 	# Initialize noise using EXPORTED frequency
-	noise.seed = randi()
+	if noise_seed: pass
+	else: noise_seed = randi()
+	noise.seed = noise_seed
+	noise_seed = noise.seed
 	noise.noise_type = FastNoiseLite.TYPE_CELLULAR
 	noise.cellular_distance_function = FastNoiseLite.DISTANCE_EUCLIDEAN
 	noise.cellular_return_type = FastNoiseLite.RETURN_DISTANCE2_ADD
 	noise.frequency = noise_freq
 	noise.fractal_octaves = octaves
 	_buildMesh()
+	call_deferred("emit_signal", "generationComplete")
 
 func _buildMesh():
 	# Use the EXPORTED gameSize
@@ -132,3 +142,23 @@ func create_island_collision(points: PackedVector2Array):
 		add_child(col)
 		# Deferring owner helps avoid 'node not found' errors during generation
 		col.set_deferred("owner", self) 
+
+# Add this to islands.gd
+func duplicate_data_to(target: Node2D) -> void:
+	# 1. Share the Mesh and Material
+	for child in get_children():
+		if child is MeshInstance2D:
+			var new_mesh_node = MeshInstance2D.new()
+			# Resources (Mesh/Material) are shared by reference, which is very fast
+			new_mesh_node.mesh = child.mesh
+			new_mesh_node.material = child.material
+			target.add_child(new_mesh_node)
+		
+		# 2. Duplicate Collision Polygons
+		elif child is CollisionPolygon2D:
+			var new_col = child.duplicate() # duplicate() creates a deep copy of the node
+			target.add_child(new_col)
+	
+	# 3. Copy physics layers
+	target.collision_layer = self.collision_layer
+	target.collision_mask = self.collision_mask

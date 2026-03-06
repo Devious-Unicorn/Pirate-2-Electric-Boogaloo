@@ -16,7 +16,7 @@ void fragment() {
         COLOR = vec4(0.94, 0.82, 0.6, 1.0); // Sand
     } else {
         float t = (adjusted_v - sand_threshold) / (1.0 - sand_threshold);
-        vec3 light_green = vec3(0.5, 0.9, 0.2);
+        vec3 light_green = vec3(0.41, 0.82, 0.10);
         vec3 dark_green = vec3(0.05, 0.3, 0.05);
         COLOR = vec4(mix(light_green, dark_green, clamp(t, 0.0, 1.0)), 1.0);
     }
