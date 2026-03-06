@@ -5,12 +5,15 @@
 [ext_resource type="PackedScene" uid="uid://s25dhmbfj3it" path="res://assets/scenes/ocean.tscn" id="3_j62u1"]
 
 [node name="Game" type="Node2D" unique_id=771860513]
+visibility_layer = 3
 
 [node name="Ocean" parent="." unique_id=1751609981 instance=ExtResource("3_j62u1")]
+visibility_layer = 3
 offset_right = 0.0
 offset_bottom = 0.0
 
 [node name="Islands" parent="." unique_id=914712744 instance=ExtResource("2_cb5na")]
+visibility_layer = 3
 sandThreshold = 0.55
 sea_level = 0.3700000000000001
 scale_factor = 32.0

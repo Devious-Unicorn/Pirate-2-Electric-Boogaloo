@@ -1,8 +1,13 @@
 extends SubViewport
 
-@onready var Boat := get_node("../../../")
+@export var Boat: CharacterBody2D
+@export var MinimapIcon: Sprite2D
 
 func _ready():
-	world_2d = get_tree().root.world_2d
+	world_2d = get_tree().root.get_viewport().world_2d
+	get_tree().root.canvas_cull_mask = 1
+	$"Minimap camera".zoom = Vector2.ONE / 8
+	MinimapIcon.scale = Vector2.ONE * 4
+
+func _process(delta: float) -> void:
 	$"Minimap camera".global_position = Boat.global_position
-	$"Minimap camera".zoom = Vector2.ONE * 0.1666
