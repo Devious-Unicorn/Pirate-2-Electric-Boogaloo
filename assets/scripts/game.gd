@@ -8,11 +8,6 @@ extends Node2D
 var islands: Array
 var genFin := false
 
-func _ready() -> void:
-	print("gen start")
-	await Islands.generationComplete
-	print("gen fin")
-
 func _on_islands_generation_complete() -> void:
 	var island_node = Islands if Islands else get_node("Islands")
 	if genFin or not island_node: return 
@@ -20,7 +15,7 @@ func _on_islands_generation_complete() -> void:
 	var islandSize: Vector2 = island_node.gameSize * island_node.scale_factor
 	
 	# Setup Ocean
-	Ocean.size = islandSize * 3
+	Ocean.size = islandSize * 2
 	Ocean.global_position = islandSize / 2 - Ocean.size / 2
 	
 	for i in range(8):

@@ -19,7 +19,6 @@ var wind_strength: float = 0.0
 var endl := "\n"
 
 func _ready() -> void:
-	#global_position = Vector2.ZERO
 	global_position = islandSize / 2
 
 func _unhandled_input(event: InputEvent) -> void:

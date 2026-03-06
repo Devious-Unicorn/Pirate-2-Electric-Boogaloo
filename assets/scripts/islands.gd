@@ -56,7 +56,6 @@ func _buildMesh():
 	var bitmap = BitMap.new()
 	bitmap.create_from_image_alpha(img, 0.5) 
 	var polys = bitmap.opaque_to_polygons(Rect2i(0, 0, gameSize.x, gameSize.y))
-	print("Polygons found: ", polys.size())
 	
 	for child in get_children():
 		if child is CollisionPolygon2D:

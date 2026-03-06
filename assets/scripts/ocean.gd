@@ -19,8 +19,7 @@ var current_offset: Vector2 = Vector2.ZERO # Total movement "memory" passed to t
 var time_passed: float = 0.0               # Clock to track noise sampling over time.
 
 func _ready() -> void:
-	if Islands:
-		set_deferred("size", Vector2(Islands.gameSize.x * Islands.scale_factor,Islands.gameSize.y * Islands.scale_factor))
+	if Islands: pass
 	else: set_deferred("size", Vector2(640, 360))
 	
 	if not wind_noise: # Create a noise generator if one isn't assigned.
