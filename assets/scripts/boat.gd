@@ -20,6 +20,10 @@ var endl := "\n"
 
 func _ready() -> void:
 	global_position = islandSize / 2
+	await Islands.generationComplete
+	
+	while(test_move(global_transform, Vector2.ZERO)):
+		global_position = Vector2(randf_range(0, islandSize.x), randf_range(0, islandSize.y))
 
 func _unhandled_input(event: InputEvent) -> void:
 	if Input.is_action_pressed("zoom in"): $Camera2D.zoom += Vector2.ONE * 0.1
