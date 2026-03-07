@@ -75,35 +75,6 @@ text_overrun_behavior = 4
 custom_minimum_size = Vector2(191, 0)
 layout_mode = 2
 
-[node name="down" type="HBoxContainer" parent="PanelContainer/VBoxContainer" unique_id=839293387]
-custom_minimum_size = Vector2(0, 32)
-layout_mode = 2
-
-[node name="Label" type="Label" parent="PanelContainer/VBoxContainer/down" unique_id=1782647316]
-layout_mode = 2
-size_flags_horizontal = 4
-theme = ExtResource("2_1bfk6")
-text = "Drive south:"
-
-[node name="Control" type="Control" parent="PanelContainer/VBoxContainer/down" unique_id=439942845]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="ctrl" type="Button" parent="PanelContainer/VBoxContainer/down" unique_id=290726582]
-custom_minimum_size = Vector2(96, 24)
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 4
-theme_override_fonts/font = ExtResource("3_ehycp")
-text = "Not Set"
-text_overrun_behavior = 4
-
-[node name="Control2" type="Control" parent="PanelContainer/VBoxContainer/down" unique_id=1060032645]
-custom_minimum_size = Vector2(191, 0)
-layout_mode = 2
-
 [node name="left" type="HBoxContainer" parent="PanelContainer/VBoxContainer" unique_id=766776131]
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
@@ -130,6 +101,35 @@ text = "Not Set"
 text_overrun_behavior = 4
 
 [node name="Control2" type="Control" parent="PanelContainer/VBoxContainer/left" unique_id=1246584691]
+custom_minimum_size = Vector2(191, 0)
+layout_mode = 2
+
+[node name="down" type="HBoxContainer" parent="PanelContainer/VBoxContainer" unique_id=839293387]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/VBoxContainer/down" unique_id=1782647316]
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("2_1bfk6")
+text = "Drive south:"
+
+[node name="Control" type="Control" parent="PanelContainer/VBoxContainer/down" unique_id=439942845]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ctrl" type="Button" parent="PanelContainer/VBoxContainer/down" unique_id=290726582]
+custom_minimum_size = Vector2(96, 24)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("3_ehycp")
+text = "Not Set"
+text_overrun_behavior = 4
+
+[node name="Control2" type="Control" parent="PanelContainer/VBoxContainer/down" unique_id=1060032645]
 custom_minimum_size = Vector2(191, 0)
 layout_mode = 2
 
