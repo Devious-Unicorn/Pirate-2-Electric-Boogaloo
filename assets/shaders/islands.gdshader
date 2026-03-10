@@ -5,7 +5,6 @@ uniform float sea_level;
 uniform float sand_threshold;
 
 void fragment() {
-    // Sample noise (Texture is 0.0-1.0 already)
     float val = texture(noise_tex, UV).r;
     
     // Normalize height above sea level
