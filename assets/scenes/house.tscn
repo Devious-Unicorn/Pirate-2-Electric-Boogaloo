@@ -7,10 +7,14 @@
 size = Vector2(6, 6)
 
 [node name="House" type="StaticBody2D" unique_id=1641560069]
+collision_layer = 2
+collision_mask = 2
 script = ExtResource("1_ri1aq")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=49001976]
+scale = Vector2(3, 3)
 texture = ExtResource("2_16i3a")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1433577605]
+scale = Vector2(3, 3)
 shape = SubResource("RectangleShape2D_71ewf")

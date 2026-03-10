@@ -1,5 +1,7 @@
 extends Node2D
 
+@export var houseDistance: float = 150
+
 @onready var Islands = get_node("../Islands")
 @onready var Game = get_node("../")
 @onready var House = preload("res://assets/scenes/house.tscn")
@@ -8,19 +10,36 @@ var houses: Array
 
 func _ready():
 	await Islands.generationComplete
-	# get all colliders
 	var islands = Islands.find_children("*", "CollisionPolygon2D")
+	
 	for island in islands:
-		for i in range(randi_range(1, 10)):
-			var point := pickPointInPolygon(island.polygon)
-			houses.append(House.instantiate())
-			houses[-1].global_position = point
-			add_child(houses[-1])
+		var num = randi_range(1, 10)
+		var spawned_on_island = 0
+		var attempts = 0
+		
+		while spawned_on_island < num and attempts < 100:
+			var point = pickPointInPolygon(island.polygon)
+			
+			# Check distance against ALL existing houses
+			var too_close = false
+			for h in houses:
+				if point.distance_to(h.global_position) < houseDistance:
+					too_close = true
+					break
+			
+			if not too_close:
+				var new_house = House.instantiate()
+				new_house.global_position = point
+				add_child(new_house)
+				houses.append(new_house)
+				spawned_on_island += 1
+			
+			attempts += 1
 
 func pickPointInPolygon(polygon) -> Vector2:
-	# convert the polygon to triangles
 	var triPoints = Geometry2D.triangulate_polygon(polygon)
 	
+	# make array of the triangles that makes up the polygon
 	var tris: Array[PackedVector2Array]
 	for i in range(0, triPoints.size(), 3):
 		# create an array of each triangle
@@ -28,21 +47,25 @@ func pickPointInPolygon(polygon) -> Vector2:
 	# create array of the area of each triangle
 	var area: Array
 	for tri in tris:
-		var p1 = tri[0]
-		var p2 = tri[1]
-		var p3 = tri[2]
-		area.append(0.5 * abs(p1.x * (p2.y - p3.y) + p2.x * (p3.y - p1.y) + p3.x * (p1.y - p2.y)))
+		# area of a triangle can be found by finding the cross product of two adjacent edges
+		# the magnitude of the result of the cross product is equal to a paralelogram with the same two edges used in the cross product
+		# halving the result of the cross product gives the area of the triangle
+		area.append(abs((tri[1] - tri[0]).cross(tri[2] - tri[0])) * 0.5)
 	
 	var selectedTri = tris[area.find(selectRandomWeighted(area))]
 	var num = Vector2(randf(), randf())
-	return ((1 - sqrt(num.x)) * selectedTri[0] + (sqrt(num.x) * (1 - num.y)) * selectedTri[1] + (sqrt(num.x) * num.y) * selectedTri[2])
+	
+	return (1 - sqrt(num.x)) * selectedTri[0] + (sqrt(num.x) * (1 - num.y)) * selectedTri[1] + (sqrt(num.x) * num.y) * selectedTri[2]
+
+func distance(a: Vector2, b: Vector2) -> float:
+	return sqrt((b.x - a.x) ** 2 + (b.y - a.y) ** 2)
 
 func selectRandomWeighted(list):
 	var totalWeight := 0.0
 	for i in list:
 		totalWeight += i
 	
-	var num = randf()
-	for i in range(list.size()):
-		num  -= list[i]
-		if(num <= 0): return list[i]
+	var num = randf_range(0, totalWeight)
+	for i in list:
+		num -= i
+		if num <= 0: return i
