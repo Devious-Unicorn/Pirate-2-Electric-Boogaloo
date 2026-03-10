@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://cebwmk6q2jril"
+path="res://.godot/imported/FX - Floating in the Ocean - 48kHz.wav-5fbdc128f19c99de33275d3deb6c9ef7.sample"
+
+[deps]
+
+source_file="res://assets/music/Floating in the Ocean/FX - Floating in the Ocean - 48kHz.wav"
+dest_files=["res://.godot/imported/FX - Floating in the Ocean - 48kHz.wav-5fbdc128f19c99de33275d3deb6c9ef7.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

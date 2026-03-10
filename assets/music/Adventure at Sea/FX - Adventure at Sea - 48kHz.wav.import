@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://bc507snr10x1"
+path="res://.godot/imported/FX - Adventure at Sea - 48kHz.wav-ee408429d7b5dcad6f190f9e390e3dcb.sample"
+
+[deps]
+
+source_file="res://assets/music/Adventure at Sea/FX - Adventure at Sea - 48kHz.wav"
+dest_files=["res://.godot/imported/FX - Adventure at Sea - 48kHz.wav-ee408429d7b5dcad6f190f9e390e3dcb.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://bxmvc154sn462"
+path="res://.godot/imported/Traveling across the sea - 96kHz.wav-604fdc69001210f0d4d29f67e9f45cda.sample"
+
+[deps]
+
+source_file="res://assets/music/Traveling across the Sea/Traveling across the sea - 96kHz.wav"
+dest_files=["res://.godot/imported/Traveling across the sea - 96kHz.wav-604fdc69001210f0d4d29f67e9f45cda.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

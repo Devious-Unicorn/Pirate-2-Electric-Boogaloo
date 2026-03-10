@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://daee31t7v2wtx"
+path="res://.godot/imported/Basses Bartok Pizzicato - The Wind is with us - 48kHz.wav-553dc79f2fd795730c884f0e672506f7.sample"
+
+[deps]
+
+source_file="res://assets/music/The Wind is with us/Basses Bartok Pizzicato - The Wind is with us - 48kHz.wav"
+dest_files=["res://.godot/imported/Basses Bartok Pizzicato - The Wind is with us - 48kHz.wav-553dc79f2fd795730c884f0e672506f7.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

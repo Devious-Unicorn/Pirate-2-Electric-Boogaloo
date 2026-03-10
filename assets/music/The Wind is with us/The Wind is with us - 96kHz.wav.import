@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://vcjgrelb4273"
+path="res://.godot/imported/The Wind is with us - 96kHz.wav-739bc24d64f7c3edabf97754b708ab00.sample"
+
+[deps]
+
+source_file="res://assets/music/The Wind is with us/The Wind is with us - 96kHz.wav"
+dest_files=["res://.godot/imported/The Wind is with us - 96kHz.wav-739bc24d64f7c3edabf97754b708ab00.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

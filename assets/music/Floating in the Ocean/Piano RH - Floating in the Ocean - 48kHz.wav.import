@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://br6570jxdmji2"
+path="res://.godot/imported/Piano RH - Floating in the Ocean - 48kHz.wav-7b50443019c130987c89918bb5b9ec51.sample"
+
+[deps]
+
+source_file="res://assets/music/Floating in the Ocean/Piano RH - Floating in the Ocean - 48kHz.wav"
+dest_files=["res://.godot/imported/Piano RH - Floating in the Ocean - 48kHz.wav-7b50443019c130987c89918bb5b9ec51.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

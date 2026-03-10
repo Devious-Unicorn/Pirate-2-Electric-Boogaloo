@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://c6ya57proniem"
+path="res://.godot/imported/Viola Sul Tasto - The Calm at the Sea - 48kHz.wav-2acb9d6249f48191c2e618021c74942e.sample"
+
+[deps]
+
+source_file="res://assets/music/The Calm at the Sea/Viola Sul Tasto - The Calm at the Sea - 48kHz.wav"
+dest_files=["res://.godot/imported/Viola Sul Tasto - The Calm at the Sea - 48kHz.wav-2acb9d6249f48191c2e618021c74942e.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

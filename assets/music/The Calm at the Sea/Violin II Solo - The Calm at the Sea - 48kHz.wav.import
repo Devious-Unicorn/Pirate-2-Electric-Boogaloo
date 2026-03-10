@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://84we400y18kw"
+path="res://.godot/imported/Violin II Solo - The Calm at the Sea - 48kHz.wav-88846c2de861e90b7a4a574c0276de0b.sample"
+
+[deps]
+
+source_file="res://assets/music/The Calm at the Sea/Violin II Solo - The Calm at the Sea - 48kHz.wav"
+dest_files=["res://.godot/imported/Violin II Solo - The Calm at the Sea - 48kHz.wav-88846c2de861e90b7a4a574c0276de0b.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2
