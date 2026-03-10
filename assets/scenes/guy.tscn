@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://b6faytpxfqykc"]
+
+[ext_resource type="Texture2D" uid="uid://qiexmhphfbxs" path="res://assets/sprites/guys.png" id="1_2s66x"]
+[ext_resource type="Script" uid="uid://dmr2gqkppgkim" path="res://assets/scripts/guy.gd" id="1_j3ryk"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j3ryk"]
+atlas = ExtResource("1_2s66x")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s2wpo"]
+size = Vector2(6, 14)
+
+[node name="CharacterBody2D" type="CharacterBody2D" unique_id=546538250]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("1_j3ryk")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=2123284227]
+texture = SubResource("AtlasTexture_j3ryk")
+hframes = 9
+vframes = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1549126124]
+shape = SubResource("RectangleShape2D_s2wpo")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=1841751434]
+avoidance_enabled = true

@@ -33,8 +33,18 @@ func _on_islands_generation_complete() -> void:
 		islands.append(new_island)
 		
 	genFin = true
+	
+	createNavAreas()
 
-# Helper to clean up that long match statement
+func createNavAreas():
+	for island in find_children("*", "CollisionPolygon2D"):
+		var navArea = NavigationRegion2D.new()
+		var navPoly = NavigationPolygon.new()
+		navPoly.add_outline(island.polygon)
+		navArea.navigation_polygon = navPoly
+		navArea.bake_navigation_polygon()
+		add_child(navArea)
+
 func _get_island_pos(i: int, size: Vector2) -> Vector2:
 	var offsets = [
 		Vector2(-size.x, -size.y), Vector2(0, -size.y), Vector2(size.x, -size.y),

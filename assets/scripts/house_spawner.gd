@@ -1,12 +1,14 @@
 extends Node2D
 
-@export var houseDistance: float = 150
+@export var houseDistance: float = 150 # how close together each house is allowed to be
 
 @onready var Islands = get_node("../Islands")
 @onready var Game = get_node("../")
 @onready var House = preload("res://assets/scenes/house.tscn")
+@onready var Guy = preload("res://assets/scenes/guy.tscn")
 
 var houses: Array
+var guys: Array
 
 func _ready():
 	await Islands.generationComplete
@@ -35,6 +37,14 @@ func _ready():
 				spawned_on_island += 1
 			
 			attempts += 1
+	
+	for h in houses:
+		var num = randi_range(1, 4)
+		for i in range(num):
+			guys.append(Guy.instantiate())
+			guys[-1].homePosition = h.global_position
+			guys[-1].global_position = guys[-1].homePosition + Vector2.ONE * randf_range(-10, 10)
+			add_child(guys[-1])
 
 func pickPointInPolygon(polygon) -> Vector2:
 	var triPoints = Geometry2D.triangulate_polygon(polygon)
@@ -50,6 +60,7 @@ func pickPointInPolygon(polygon) -> Vector2:
 		# area of a triangle can be found by finding the cross product of two adjacent edges
 		# the magnitude of the result of the cross product is equal to a paralelogram with the same two edges used in the cross product
 		# halving the result of the cross product gives the area of the triangle
+		# subtract the positions to create a vector in the mathematical sense (dx, dy)
 		area.append(abs((tri[1] - tri[0]).cross(tri[2] - tri[0])) * 0.5)
 	
 	var selectedTri = tris[area.find(selectRandomWeighted(area))]
