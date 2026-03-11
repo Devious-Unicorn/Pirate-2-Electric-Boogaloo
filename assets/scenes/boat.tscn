@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://dg11mlh4mycnq" path="res://assets/sprites/Boat 32x32.png" id="1_e3ff2"]
 [ext_resource type="Script" uid="uid://b3r3t7k4et481" path="res://assets/scripts/sub_viewport.gd" id="3_co85y"]
 [ext_resource type="Texture2D" uid="uid://dxrq462y87v28" path="res://assets/sprites/Minimap border.png" id="3_rx8mf"]
+[ext_resource type="Texture2D" uid="uid://bhwqtci7c5scx" path="res://assets/sprites/spedometer.png" id="5_rx8mf"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5u0pl"]
 radius = 6.0
@@ -67,6 +68,7 @@ MinimapIcon = NodePath("../../../../Minimap icon")
 
 [node name="Minimap camera" type="Camera2D" parent="CanvasLayer/CenterContainer/SubViewportContainer/SubViewport" unique_id=1248233872]
 
-[node name="Label" type="Label" parent="CanvasLayer" unique_id=1062523834]
-offset_right = 40.0
-offset_bottom = 23.0
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer" unique_id=526741905]
+position = Vector2(31, 327.5)
+scale = Vector2(2, 2)
+texture = ExtResource("5_rx8mf")
