@@ -42,8 +42,8 @@ func _ready():
 		var num = randi_range(1, 4)
 		for i in range(num):
 			guys.append(Guy.instantiate())
-			guys[-1].homePosition = h.global_position
-			guys[-1].global_position = guys[-1].homePosition + Vector2.ONE * randf_range(-10, 10)
+			guys[-1].home = h.global_position
+			guys[-1].global_position = guys[-1].home + Vector2.ONE * randf_range(-10, 10)
 			add_child(guys[-1])
 
 func pickPointInPolygon(polygon) -> Vector2:

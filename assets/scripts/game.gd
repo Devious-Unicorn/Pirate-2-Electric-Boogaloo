@@ -1,7 +1,6 @@
 extends Node2D
 
 @onready var islandScene = preload("res://assets/scenes/islands.tscn")
-@onready var oceanScene = preload("res://assets/scenes/ocean.tscn")
 @onready var Islands = $Islands
 @onready var Ocean = $Ocean
 
@@ -42,8 +41,8 @@ func createNavAreas():
 		var navPoly = NavigationPolygon.new()
 		navPoly.add_outline(island.polygon)
 		navArea.navigation_polygon = navPoly
-		navArea.bake_navigation_polygon()
 		add_child(navArea)
+		navArea.bake_navigation_polygon()
 
 func _get_island_pos(i: int, size: Vector2) -> Vector2:
 	var offsets = [
