@@ -13,7 +13,7 @@ enum state {
 var currentState
 
 func _ready() -> void:
-	wander()
+	pass
 
 func _process(delta: float) -> void:
 	if currentState == state.moving or currentState == state.walking:
@@ -38,19 +38,5 @@ func _process(delta: float) -> void:
 		currentState = state.walking
 	else:
 		velocity = Vector2.ZERO
-		match randi() % state.size():
-			0: currentState = state.moving
-			1: currentState = state.walking
-			2: currentState = state.resting
-			3: currentState = state.stopped
-
-func wander():
-	match state:
-		state.moving:
-			pass
-		state.walking:
-			pass
-		state.resting:
-			pass
-		state.stopped:
-			pass
+		currentState = state.walking
+	$Label.text = str(currentState)

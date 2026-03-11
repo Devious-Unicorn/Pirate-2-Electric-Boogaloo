@@ -24,8 +24,6 @@ func _on_islands_generation_complete() -> void:
 		
 		# Transfer the data from the original generated island
 		Islands.duplicate_data_to(new_island)
-		
-		# Position it based on your match logic
 		new_island.global_position = _get_island_pos(i, islandSize)
 		
 		add_child(new_island)
@@ -39,7 +37,7 @@ func createNavAreas():
 	for island in find_children("*", "CollisionPolygon2D"):
 		var navArea = NavigationRegion2D.new()
 		var navPoly = NavigationPolygon.new()
-		navPoly.add_outline(island.polygon)
+		navPoly.add_outline(Geometry2D.offset_polygon(island.polygon, -32))
 		navArea.navigation_polygon = navPoly
 		add_child(navArea)
 		navArea.bake_navigation_polygon()
