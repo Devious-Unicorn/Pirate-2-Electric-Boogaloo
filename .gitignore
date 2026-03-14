@@ -6,3 +6,4 @@
 *.ase
 *.xcf
 *.tmp
+/addons/

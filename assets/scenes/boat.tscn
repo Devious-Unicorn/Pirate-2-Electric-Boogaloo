@@ -5,9 +5,14 @@
 [ext_resource type="Script" uid="uid://b3r3t7k4et481" path="res://assets/scripts/sub_viewport.gd" id="3_co85y"]
 [ext_resource type="Texture2D" uid="uid://dxrq462y87v28" path="res://assets/sprites/Minimap border.png" id="3_rx8mf"]
 [ext_resource type="Texture2D" uid="uid://bhwqtci7c5scx" path="res://assets/sprites/spedometer.png" id="5_rx8mf"]
+[ext_resource type="PackedScene" uid="uid://b6faytpxfqykc" path="res://assets/scenes/guy.tscn" id="6_bfw1s"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5u0pl"]
 radius = 6.0
+height = 28.0
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_gxn08"]
+outlines = Array[PackedVector2Array]([PackedVector2Array(-5, -5, 14, -5, 14, -4, 17, -4, 17, -3, 19, -3, 19, -2, 20, -2, 20, -1, 21, -1, 21, 1, 20, 1, 20, 2, 19, 2, 19, 3, 17, 3, 17, 4, 14, 4, 14, 5, -5, 5)])
 
 [node name="Boat" type="CharacterBody2D" unique_id=1002307284]
 visibility_layer = 3
@@ -28,7 +33,7 @@ texture = ExtResource("1_e3ff2")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1366012134]
 texture_filter = 1
-position = Vector2(8, 0)
+position = Vector2(7, 0)
 rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_5u0pl")
 
@@ -72,3 +77,8 @@ MinimapIcon = NodePath("../../../../Minimap icon")
 position = Vector2(31, 327.5)
 scale = Vector2(2, 2)
 texture = ExtResource("5_rx8mf")
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="." unique_id=1325030979]
+navigation_polygon = SubResource("NavigationPolygon_gxn08")
+
+[node name="CharacterBody2D" parent="." unique_id=546538250 instance=ExtResource("6_bfw1s")]

@@ -22,8 +22,12 @@ func _process(delta: float) -> void:
 				currentState += [1, -1].pick_random()
 				clamp(currentState, 0, 3)
 			else:
-				nav.target_position = Vector2(randf_range(0, Islands.gameSize.x * Islands.scale_factor), randf_range(0, Islands.gameSize.y * Islands.scale_factor))
-				if !nav.is_target_reachable(): nav.target_position = nav.get_final_position()
+				for region in get_node("../../").find_children("*", "NavigationRegion2D"):
+					var global_vertices: Array[Vector2]
+					for v in region.navigation_polygon.get_vertices():
+						global_vertices.append(region.to_global(v))
+					if(Geometry2D.is_point_in_polygon(global_position, global_vertices)):
+						nav.target_position = NavigationServer2D.region_get_random_point(region.get_region_rid(), 1, false)
 		else:
 			velocity = global_position.direction_to(nav.get_next_path_position()) * speed
 			move_and_slide()
@@ -39,4 +43,3 @@ func _process(delta: float) -> void:
 	else:
 		velocity = Vector2.ZERO
 		currentState = state.walking
-	$Label.text = str(currentState)
