@@ -43,10 +43,13 @@ func _physics_process(delta: float) -> void:
 		rotation = lerp_angle(rotation, velocity.angle(), 0.01)
 	
 	#reduce max speed or increase max speed depending on velocity angle and wind direction
-	var maxSpeed = defaultMaxSpeed - ((abs(velocity.angle_to(wind_direction.rotated(deg_to_rad(-180)))) - PI / 2) * wind_strength * 3)
+	var maxSpeed = defaultMaxSpeed - (abs(velocity.angle_to(wind_direction.rotated(5 * PI / 4)) - PI / 2) * wind_strength * 3)
 	
 	# limit speed to maxSpeed
 	velocity = velocity.limit_length(maxSpeed)
+	
+	$Label.text = str(maxSpeed)
+	$CanvasLayer/Node2D.rotation = remap(velocity.length(), 0, 50, 0, PI / 2)
 	
 	# limit camera zoom
 	$Camera2D.zoom = $Camera2D.zoom.clamp(Vector2.ONE * 0.25, Vector2.ONE * 10)

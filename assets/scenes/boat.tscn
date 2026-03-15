@@ -19,6 +19,10 @@ visibility_layer = 3
 texture_filter = 1
 motion_mode = 1
 script = ExtResource("1_5u0pl")
+defaultMaxSpeed = null
+acceleration = null
+friction = null
+wind_push_factor = null
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1602075657]
 texture_filter = 1
@@ -78,7 +82,21 @@ position = Vector2(31, 327.5)
 scale = Vector2(2, 2)
 texture = ExtResource("5_rx8mf")
 
+[node name="Node2D" type="Node2D" parent="CanvasLayer" unique_id=1640595451]
+position = Vector2(12, 349)
+
+[node name="Line2D" type="Line2D" parent="CanvasLayer/Node2D" unique_id=1885636787]
+points = PackedVector2Array(0, 0, 0, -42)
+width = 5.0
+default_color = Color(1, 0, 0, 0.49803922)
+begin_cap_mode = 2
+
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="." unique_id=1325030979]
 navigation_polygon = SubResource("NavigationPolygon_gxn08")
 
 [node name="CharacterBody2D" parent="." unique_id=546538250 instance=ExtResource("6_bfw1s")]
+speed = 20.0
+
+[node name="Label" type="Label" parent="." unique_id=496033231]
+offset_right = 40.0
+offset_bottom = 23.0
