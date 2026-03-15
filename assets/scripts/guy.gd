@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 @export var home: Vector2
-@export var speed: float = 5
+@export var speed: float = 100
 @onready var nav = $NavigationAgent2D
 @onready var Islands = get_node("../../Islands")
 enum state {
@@ -10,36 +10,58 @@ enum state {
 	resting, # stopped walking for a few seconds. has a chance to move down to stopped
 	stopped # not moving for a while. after the timer runs out moves to walking
 }
-var currentState
+var currentState = state.walking
+var is_map_ready = false
+var state_timer: float = 0.0  # Controls how long the guy stay in a state
 
 func _ready() -> void:
-	pass
+	# Connect to the map_changed signal so we know exactly when the nav mesh is loaded
+	NavigationServer2D.map_changed.connect(_on_map_changed)
 
-func _process(delta: float) -> void:
-	if currentState == state.moving or currentState == state.walking:
-		if nav.is_navigation_finished():
-			if randi() % 10 < 4:
-				currentState += [1, -1].pick_random()
-				clamp(currentState, 0, 3)
+func _on_map_changed(_map_rid):
+	is_map_ready = true
+	# Disconnect after first sync so we don't trigger this constantly
+	NavigationServer2D.map_changed.disconnect(_on_map_changed)
+	# Set the first target now that we know the map exists
+	pick_new_target()
+
+func _physics_process(delta: float) -> void:
+	global_rotation = 0
+	if not is_map_ready: return
+	
+	if state_timer > 0:
+		state_timer -= delta
+		velocity = Vector2.ZERO
+		move_and_slide()
+		return 
+	
+	match currentState:
+		state.moving, state.walking:
+			if nav.is_navigation_finished():
+				# 40% chance to change state, 60% to just pick a new spot
+				if randi() % 10 < 4:
+					currentState = (clampi(currentState + [1, -1].pick_random(), 0, state.size() - 1)) as state
+				else:
+					pick_new_target()
 			else:
-				for region in get_node("../../").find_children("*", "NavigationRegion2D"):
-					var global_vertices: Array[Vector2]
-					for v in region.navigation_polygon.get_vertices():
-						global_vertices.append(region.to_global(v))
-					if(Geometry2D.is_point_in_polygon(global_position, global_vertices)):
-						nav.target_position = NavigationServer2D.region_get_random_point(region.get_region_rid(), 1, false)
-		else:
-			velocity = global_position.direction_to(nav.get_next_path_position()) * speed
-			move_and_slide()
-	elif currentState == state.resting:
-		velocity = Vector2.ZERO
-		await get_tree().create_timer(randf_range(0.1, 1)).timeout
-		if randi() % 10 < 4:
-			currentState += [1, -1].pick_random()
-	elif currentState == state.stopped:
-		velocity = Vector2.ZERO
-		await get_tree().create_timer(randf_range(3, 5)).timeout
-		currentState = state.walking
-	else:
-		velocity = Vector2.ZERO
-		currentState = state.walking
+				var next_pos = nav.get_next_path_position()
+				velocity = global_position.direction_to(next_pos) * speed
+				move_and_slide()
+		
+		state.resting:
+			state_timer = randf_range(0.5, 2.0)
+			currentState = state.walking if randi() % 2 == 0 else state.stopped
+
+		state.stopped:
+			state_timer = randf_range(3.0, 5.0)
+			currentState = state.walking
+
+	$Label.text = "State: %s\nTarget: %s" % [state.keys()[currentState], nav.target_position]
+
+func pick_new_target():
+	var map = get_world_2d().get_navigation_map()
+	var region = NavigationServer2D.map_get_closest_point_owner(map, global_position)
+	
+	if region.is_valid():
+		var target = NavigationServer2D.region_get_random_point(region, 1, false)
+		nav.target_position = target
