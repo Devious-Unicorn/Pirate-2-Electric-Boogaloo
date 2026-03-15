@@ -6,6 +6,7 @@ extends Node2D
 
 var islands: Array
 var genFin := false
+signal nav_areas_ready
 
 func _on_islands_generation_complete() -> void:
 	var island_node = Islands if Islands else get_node("Islands")
@@ -20,7 +21,6 @@ func _on_islands_generation_complete() -> void:
 	for i in range(8):
 		# Create a "blank" island (don't call _buildMesh)
 		var new_island = islandScene.instantiate()
-		
 		new_island.is_clone = true
 		Islands.duplicate_data_to(new_island)
 		new_island.global_position = _get_island_pos(i, islandSize)
