@@ -12,6 +12,8 @@ var guys: Array
 
 func _ready():
 	await Islands.generationComplete
+	
+	# Now spawn houses and guys
 	var islands = Islands.find_children("*", "CollisionPolygon2D")
 	
 	for island in islands:

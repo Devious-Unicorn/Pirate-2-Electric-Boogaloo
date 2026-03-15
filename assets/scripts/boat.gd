@@ -33,7 +33,7 @@ func _unhandled_input(event: InputEvent) -> void:
 func _physics_process(delta: float) -> void:
 	# get forces that would cause a change in velocity
 	var driveForce := _drive() * acceleration
-	var windForce := -wind_direction * (wind_strength * wind_push_factor)
+	var windForce := -wind_direction.rotated(PI / 4) * (wind_strength * wind_push_factor)
 	# add to velocity instead of setting directly to make the boat accelerate instead of moving instantly
 	velocity += (driveForce + windForce) * delta
 	

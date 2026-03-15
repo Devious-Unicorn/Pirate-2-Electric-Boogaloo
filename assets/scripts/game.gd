@@ -20,18 +20,23 @@ func _on_islands_generation_complete() -> void:
 	for i in range(8):
 		# Create a "blank" island (don't call _buildMesh)
 		var new_island = islandScene.instantiate()
-		new_island.is_clone = true # tell the instantaited island to not run _ready()
 		
-		# Transfer the data from the original generated island
+		new_island.is_clone = true
 		Islands.duplicate_data_to(new_island)
 		new_island.global_position = _get_island_pos(i, islandSize)
-		
 		add_child(new_island)
 		islands.append(new_island)
 		
 	genFin = true
 	
 	createNavAreas()
+	await get_tree().process_frame
+	NavigationServer2D.bake_from_source_geometry_data(
+		get_world_2d().get_navigation_map(),
+		NavigationMeshSourceGeometryData2D.new()
+	)
+	
+	get_node("House spawner").spawnGuys()
 
 func createNavAreas():
 	for island in find_children("*", "CollisionPolygon2D"):
@@ -41,6 +46,9 @@ func createNavAreas():
 		navArea.navigation_polygon = navPoly
 		add_child(navArea)
 		navArea.bake_navigation_polygon()
+	
+	# Signal that nav areas are ready
+	call_deferred("emit_signal", "nav_areas_ready")
 
 func _get_island_pos(i: int, size: Vector2) -> Vector2:
 	var offsets = [
