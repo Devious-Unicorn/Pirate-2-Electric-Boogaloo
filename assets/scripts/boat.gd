@@ -33,7 +33,7 @@ func _unhandled_input(event: InputEvent) -> void:
 func _physics_process(delta: float) -> void:
 	# get forces that would cause a change in velocity
 	var driveForce := _drive() * acceleration
-	var windForce := -wind_direction.rotated(PI / 4) * (wind_strength * wind_push_factor)
+	var windForce := -wind_direction * (wind_strength * wind_push_factor)
 	# add to velocity instead of setting directly to make the boat accelerate instead of moving instantly
 	velocity += (driveForce + windForce) * delta
 	
@@ -48,7 +48,6 @@ func _physics_process(delta: float) -> void:
 	# limit speed to maxSpeed
 	velocity = velocity.limit_length(maxSpeed)
 	
-	$Label.text = str(maxSpeed)
 	$CanvasLayer/Node2D.rotation = remap(velocity.length(), 0, 50, 0, PI / 2)
 	
 	# limit camera zoom
