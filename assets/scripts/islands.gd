@@ -5,13 +5,14 @@ var noise = FastNoiseLite.new()
 @export_group("Generation values")
 @export_range(0, 1, 0.01) var sandThreshold: float = 0.05
 @export_range(-1, 1, 0.01) var sea_level = 0.5
+@export var noise_seed = null
+@export var noise_freq: float = 0.01
+@export var octaves: int = 3
 
 @export_group("Game Parameters")
 @export var gameSize := Vector2i(480, 270) # Use smaller size for BitMap speed
 @export var scale_factor: float = 8.0
-@export var noise_seed = null
-@export var noise_freq: float = 0.01
-@export var octaves: int = 3
+@export var LoadingScreen: PanelContainer
 
 @export var island_shader: Shader
 
@@ -20,6 +21,7 @@ signal generationComplete
 var is_clone := false;
 
 func generate() -> void:
+	LoadingScreen.setStatus.call_deferred("Initialization for island procedural generation")
 	if is_clone: return
 	# Initialize noise using EXPORTED frequency
 	if noise_seed: pass
@@ -35,6 +37,7 @@ func generate() -> void:
 	call_deferred("emit_signal", "generationComplete")
 
 func _buildMesh():
+	LoadingScreen.setStatus.call_deferred("Convert noise to black and white image")
 	# Use the EXPORTED gameSize
 	var img = Image.create_empty(gameSize.x, gameSize.y, false, Image.FORMAT_RGBA8)
 	
@@ -52,22 +55,27 @@ func _buildMesh():
 				img.set_pixel(x, y, Color(1, 1, 1, 1)) # Land
 			else:
 				img.set_pixel(x, y, Color(0, 0, 0, 0)) # Water
-
+	
+	LoadingScreen.setStatus.call_deferred("Convert opaque areas of image to polygons")
 	var bitmap = BitMap.new()
 	bitmap.create_from_image_alpha(img, 0.5) 
 	var polys = bitmap.opaque_to_polygons(Rect2i(0, 0, gameSize.x, gameSize.y))
 	
+	LoadingScreen.setStatus.call_deferred("Delete old hitboxes if any exist")
 	(func(): 
 		for child in get_children():
 			if child is CollisionPolygon2D:
 				child.free()
 	).call_deferred()
 	
+	LoadingScreen.setStatus.call_deferred("Initialize SurfaceTool to create island mesh")
 	var st = SurfaceTool.new()
 	st.begin(Mesh.PRIMITIVE_TRIANGLES)
 	var vertexOffset = 0
 	
+	var i: int = 1
 	for poly in polys:
+		LoadingScreen.setStatus.call_deferred("Create island meshes (%d/%d)" % [i, polys.size()])
 		# skip this polygon if it does not have 3 vertices to avoid crashes
 		if poly.size() < 3: continue
 		var cleaned = Geometry2D.offset_polygon(poly, -0.1)
@@ -92,13 +100,17 @@ func _buildMesh():
 			
 			vertexOffset += finalPoly.size()
 			
+			LoadingScreen.setStatus.call_deferred("Create island hitboxes (%d/%d)" % [i, polys.size()])
 			# keep collision inside the loop as physics work better when it is multiple islands
 			create_island_collision(finalPoly)
+			i += 1
 	
 	# commit whole surface tool to one mesh to improve performance over making a whole mesh for each island
+	LoadingScreen.setStatus.call_deferred("Merge island meshes")
 	var mesh := MeshInstance2D.new()
 	mesh.mesh = st.commit()
 	
+	LoadingScreen.setStatus.call_deferred("Calculate island color")
 	# generate colors using the shader
 	var mat := ShaderMaterial.new()
 	mat.shader = island_shader
@@ -141,10 +153,7 @@ func create_island_collision(points: PackedVector2Array):
 		col.build_mode = CollisionPolygon2D.BUILD_SOLIDS
 		col.polygon = poly
 		add_child.call_deferred(col)
-		# Deferring owner helps avoid 'node not found' errors during generation
-		col.set_deferred("owner", self) 
 
-# Add this to islands.gd
 func duplicate_data_to(target: Node2D) -> void:
 	# 1. Share the Mesh and Material
 	for child in get_children():

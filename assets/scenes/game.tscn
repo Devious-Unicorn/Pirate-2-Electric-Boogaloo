@@ -2,29 +2,91 @@
 
 [ext_resource type="Script" uid="uid://dbhom7j5v1irs" path="res://assets/scripts/game.gd" id="1_cb5na"]
 [ext_resource type="PackedScene" uid="uid://d0nq38ji0rgv2" path="res://assets/scenes/islands.tscn" id="2_cb5na"]
-[ext_resource type="PackedScene" uid="uid://6iyri4l1xav" path="res://assets/scenes/boat.tscn" id="3_5gf0t"]
 [ext_resource type="PackedScene" uid="uid://s25dhmbfj3it" path="res://assets/scenes/ocean.tscn" id="3_j62u1"]
+[ext_resource type="Script" uid="uid://bmnbwmjrt5sbt" path="res://assets/scripts/loading.gd" id="5_3w2km"]
 [ext_resource type="Script" uid="uid://cldmu4c8n0qv" path="res://assets/scripts/house_spawner.gd" id="5_j62u1"]
+[ext_resource type="Theme" uid="uid://bk58pxqy4qadm" path="res://assets/themes/Button Text.tres" id="6_wfsp4"]
+[ext_resource type="Texture2D" uid="uid://d2ixh5w208uxb" path="res://assets/sprites/Throbber.png" id="7_pw37s"]
 
-[node name="Game" type="Node2D" unique_id=771860513]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k2t1h"]
+bg_color = Color(0.1513121, 0.1513121, 0.16736989, 0.7490196)
+
+[sub_resource type="Theme" id="Theme_phsto"]
+Panel/styles/panel = SubResource("StyleBoxFlat_k2t1h")
+
+[node name="Game" type="Node2D" unique_id=771860513 node_paths=PackedStringArray("LoadingScreen")]
 visibility_layer = 3
 script = ExtResource("1_cb5na")
+LoadingScreen = NodePath("CanvasLayer/Loading")
 
 [node name="Ocean" parent="." unique_id=1751609981 instance=ExtResource("3_j62u1")]
 visibility_layer = 3
 offset_right = 0.0
 offset_bottom = 0.0
 
-[node name="Islands" parent="." unique_id=914712744 instance=ExtResource("2_cb5na")]
+[node name="Islands" parent="." unique_id=914712744 node_paths=PackedStringArray("LoadingScreen") instance=ExtResource("2_cb5na")]
 visibility_layer = 3
 sandThreshold = 0.55
 sea_level = 0.3700000000000001
-scale_factor = 32.0
 noise_freq = 0.03
 octaves = 1
+scale_factor = 32.0
+LoadingScreen = NodePath("../CanvasLayer/Loading")
 
-[node name="Boat" parent="." unique_id=1002307284 instance=ExtResource("3_5gf0t")]
-
-[node name="House spawner" type="Node2D" parent="." unique_id=1474668955]
+[node name="House spawner" type="Node2D" parent="." unique_id=1474668955 node_paths=PackedStringArray("LoadingScreen")]
 script = ExtResource("5_j62u1")
 houseDistance = 37.5
+LoadingScreen = NodePath("../CanvasLayer/Loading")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=436931271]
+
+[node name="Loading" type="PanelContainer" parent="CanvasLayer" unique_id=396459620 node_paths=PackedStringArray("Game", "Throbber", "Status")]
+custom_minimum_size = Vector2(640, 360)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_phsto")
+script = ExtResource("5_3w2km")
+Game = NodePath("../..")
+Throbber = NodePath("VBoxContainer/Control/Throbber")
+Status = NodePath("VBoxContainer/Label")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Loading" unique_id=206699206]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Control3" type="Control" parent="CanvasLayer/Loading/VBoxContainer" unique_id=272374234]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="CanvasLayer/Loading/VBoxContainer" unique_id=796230459]
+custom_minimum_size = Vector2(600, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("6_wfsp4")
+text = "Creating Islands..."
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="Control" type="Control" parent="CanvasLayer/Loading/VBoxContainer" unique_id=84849798]
+layout_mode = 2
+
+[node name="Throbber" type="TextureRect" parent="CanvasLayer/Loading/VBoxContainer/Control" unique_id=912227986]
+modulate = Color(0.35108018, 0.49271816, 0.99998146, 1)
+layout_mode = 0
+offset_left = 281.0
+offset_top = 34.0
+offset_right = 319.0
+offset_bottom = 73.0
+pivot_offset_ratio = Vector2(0.5, 0.5)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("7_pw37s")
+stretch_mode = 4
+
+[node name="Control2" type="Control" parent="CanvasLayer/Loading/VBoxContainer" unique_id=372320964]
+custom_minimum_size = Vector2(0, 180)
+layout_mode = 2

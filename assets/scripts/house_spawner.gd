@@ -1,6 +1,7 @@
 extends Node2D
 
 @export var houseDistance: float = 150 # how close together each house is allowed to be
+@export var LoadingScreen: PanelContainer
 
 @onready var Islands = get_node("../Islands")
 @onready var Game = get_node("../")
@@ -10,11 +11,8 @@ extends Node2D
 var houses: Array
 var guys: Array
 
-func _ready():
-	await Islands.generationComplete
-	await Game.nav_areas_ready  # Wait for navigation to be baked
-	
-	# Now spawn houses and guys
+func spawnHouses():
+	LoadingScreen.setStatus("Place houses randomly on islands")
 	var islands = Islands.find_children("*", "CollisionPolygon2D")
 	
 	for island in islands:
@@ -42,6 +40,7 @@ func _ready():
 			attempts += 1
 
 func spawnGuys():
+	LoadingScreen.setStatus.call_deferred("Spawn guys (ungendered use. I like saying 'guys' becuase it sounds sillier than saying 'people' or 'humans')")
 	for h in houses:
 		var num = randi_range(1, 4)
 		for i in range(num):
