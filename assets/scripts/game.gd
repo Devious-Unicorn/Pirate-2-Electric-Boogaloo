@@ -23,17 +23,19 @@ func _on_islands_generation_complete() -> void:
 	
 	var islandSize: Vector2 = island_node.gameSize * island_node.scale_factor
 	
-	# Setup Ocean
-	Ocean.size = islandSize * 2
-	Ocean.global_position = islandSize / 2 - Ocean.size / 2
+	(func():
+		# Setup Ocean
+		Ocean.size = islandSize * 2
+		Ocean.global_position = islandSize / 2 - Ocean.size / 2
+	).call_deferred()
 	
 	for i in range(8):
 		# Create a "blank" island (don't call _buildMesh)
 		var new_island = islandScene.instantiate()
 		new_island.is_clone = true
-		Islands.duplicate_data_to(new_island)
+		Islands.duplicate_data_to.call_deferred(new_island)
 		new_island.global_position = _get_island_pos(i, islandSize)
-		add_child(new_island)
+		add_child.call_deferred(new_island)
 		islands.append(new_island)
 		
 	genFin = true
