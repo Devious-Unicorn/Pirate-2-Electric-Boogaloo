@@ -7,6 +7,15 @@ extends Node2D
 var islands: Array
 var genFin := false
 signal nav_areas_ready
+signal generation_complete
+
+func _ready() -> void:
+	var thread = Thread.new(); thread.start($Islands.call.bind("generate"))
+	await $Islands.generationComplete
+	thread.wait_to_finish()
+	thread.start(_on_islands_generation_complete)
+	await generation_complete
+	thread.wait_to_finish()
 
 func _on_islands_generation_complete() -> void:
 	var island_node = Islands if Islands else get_node("Islands")
@@ -29,25 +38,28 @@ func _on_islands_generation_complete() -> void:
 		
 	genFin = true
 	
-	createNavAreas()
+	var thread = Thread.new(); thread.start(createNavAreas)
 	await get_tree().process_frame
-	NavigationServer2D.bake_from_source_geometry_data(
-		get_world_2d().get_navigation_map(),
-		NavigationMeshSourceGeometryData2D.new()
-	)
-	
+	await nav_areas_ready
+	thread.wait_to_finish()
 	get_node("House spawner").spawnGuys()
+	call_deferred("emit_signal", "generation_complete")
 
 func createNavAreas():
-	for island in find_children("*", "CollisionPolygon2D"):
-		var navArea = NavigationRegion2D.new()
-		var navPoly = NavigationPolygon.new()
-		navPoly.add_outline(Geometry2D.offset_polygon(island.polygon, -32))
-		navArea.navigation_polygon = navPoly
-		add_child(navArea)
-		navArea.bake_navigation_polygon()
+	#for island in $Islands.find_children("*", "CollisionPolygon2D"):
+	var navArea: NavigationRegion2D = NavigationRegion2D.new()
+	var navPoly: NavigationPolygon = NavigationPolygon.new()
 	
-	# Signal that nav areas are ready
+	navPoly.parsed_geometry_type = NavigationPolygon.PARSED_GEOMETRY_STATIC_COLLIDERS
+	navPoly.source_geometry_mode = NavigationPolygon.SOURCE_GEOMETRY_ROOT_NODE_CHILDREN
+	
+	var sourceData = NavigationMeshSourceGeometryData2D.new()
+	(func(): NavigationServer2D.parse_source_geometry_data(navPoly, sourceData, $Islands)).call_deferred()
+	(func(): NavigationServer2D.bake_from_source_geometry_data(navPoly, sourceData)).call_deferred()
+	
+	navArea.navigation_polygon = navPoly
+	add_child.call_deferred(navArea)
+	
 	call_deferred("emit_signal", "nav_areas_ready")
 
 func _get_island_pos(i: int, size: Vector2) -> Vector2:

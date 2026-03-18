@@ -15,7 +15,7 @@ collision_layer = 2
 collision_mask = 2
 motion_mode = 1
 script = ExtResource("1_j3ryk")
-speed = 100.0
+speed = 5.0
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=2123284227]
 texture = SubResource("AtlasTexture_j3ryk")
@@ -27,7 +27,6 @@ shape = SubResource("RectangleShape2D_s2wpo")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=1841751434]
 avoidance_enabled = true
-debug_enabled = true
 
 [node name="Label" type="Label" parent="." unique_id=1978561434]
 offset_right = 40.0

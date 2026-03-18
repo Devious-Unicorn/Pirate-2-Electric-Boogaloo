@@ -19,7 +19,7 @@ signal generationComplete
 
 var is_clone := false;
 
-func _ready() -> void:
+func generate() -> void:
 	if is_clone: return
 	# Initialize noise using EXPORTED frequency
 	if noise_seed: pass
@@ -57,9 +57,11 @@ func _buildMesh():
 	bitmap.create_from_image_alpha(img, 0.5) 
 	var polys = bitmap.opaque_to_polygons(Rect2i(0, 0, gameSize.x, gameSize.y))
 	
-	for child in get_children():
-		if child is CollisionPolygon2D:
-			child.free()
+	(func(): 
+		for child in get_children():
+			if child is CollisionPolygon2D:
+				child.free()
+	).call_deferred()
 	
 	var st = SurfaceTool.new()
 	st.begin(Mesh.PRIMITIVE_TRIANGLES)
@@ -138,7 +140,7 @@ func create_island_collision(points: PackedVector2Array):
 		var col := CollisionPolygon2D.new()
 		col.build_mode = CollisionPolygon2D.BUILD_SOLIDS
 		col.polygon = poly
-		add_child(col)
+		add_child.call_deferred(col)
 		# Deferring owner helps avoid 'node not found' errors during generation
 		col.set_deferred("owner", self) 
 

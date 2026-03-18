@@ -40,7 +40,8 @@ func _ready():
 				spawned_on_island += 1
 			
 			attempts += 1
-	
+
+func spawnGuys():
 	for h in houses:
 		var num = randi_range(1, 4)
 		for i in range(num):

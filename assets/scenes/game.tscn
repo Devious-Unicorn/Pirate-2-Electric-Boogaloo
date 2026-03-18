@@ -28,5 +28,3 @@ octaves = 1
 [node name="House spawner" type="Node2D" parent="." unique_id=1474668955]
 script = ExtResource("5_j62u1")
 houseDistance = 37.5
-
-[connection signal="generationComplete" from="Islands" to="." method="_on_islands_generation_complete"]
