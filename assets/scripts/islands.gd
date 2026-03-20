@@ -165,9 +165,9 @@ func duplicate_data_to(target: Node2D) -> void:
 			target.add_child(new_mesh_node)
 		
 		# 2. Duplicate Collision Polygons
-		elif child is CollisionPolygon2D:
-			var new_col = child.duplicate() # duplicate() creates a deep copy of the node
-			target.add_child(new_col)
+		#elif child is CollisionPolygon2D:
+			#var new_col = child.duplicate() # duplicate() creates a deep copy of the node
+			#target.add_child(new_col)
 	
 	# 3. Copy physics layers
 	target.collision_layer = self.collision_layer

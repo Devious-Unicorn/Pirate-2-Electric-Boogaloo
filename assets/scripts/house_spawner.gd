@@ -2,27 +2,34 @@ extends Node2D
 
 @export var houseDistance: float = 150 # how close together each house is allowed to be
 @export var LoadingScreen: PanelContainer
+@export var Islands: StaticBody2D
+@export var Game = Node2D
 
-@onready var Islands = get_node("../Islands")
-@onready var Game = get_node("../")
 @onready var House = preload("res://assets/scenes/house.tscn")
 @onready var Guy = preload("res://assets/scenes/guy.tscn")
 
 var houses: Array
 var guys: Array
 
+signal houseSpawnComplete;
+signal guySpawnComplete;
+
 func spawnHouses():
+	print("start spawning houses")
 	LoadingScreen.setStatus("Place houses randomly on islands")
+	await Islands.generationComplete
 	var islands = Islands.find_children("*", "CollisionPolygon2D")
+	print("get islands\nislands: " + str(islands))
 	
 	for island in islands:
+		print("next island")
 		var num = randi_range(1, 10)
 		var spawned_on_island = 0
 		var attempts = 0
-		
+		print(num)
 		while spawned_on_island < num and attempts < 100:
 			var point = pickPointInPolygon(island.polygon)
-			
+			print("point")
 			# Check distance against ALL existing houses
 			var too_close = false
 			for h in houses:
@@ -38,9 +45,10 @@ func spawnHouses():
 				spawned_on_island += 1
 			
 			attempts += 1
+	houseSpawnComplete.emit()
 
 func spawnGuys():
-	LoadingScreen.setStatus.call_deferred("Spawn guys (ungendered use. I like saying 'guys' becuase it sounds sillier than saying 'people' or 'humans')")
+	LoadingScreen.setStatus.call_deferred("Spawn people")
 	for h in houses:
 		var num = randi_range(1, 4)
 		for i in range(num):
@@ -48,6 +56,7 @@ func spawnGuys():
 			guys[-1].home = h.global_position
 			guys[-1].global_position = guys[-1].home + Vector2.ONE * randf_range(-10, 10)
 			add_child(guys[-1])
+	guySpawnComplete.emit()
 
 func pickPointInPolygon(polygon) -> Vector2:
 	var triPoints = Geometry2D.triangulate_polygon(polygon)

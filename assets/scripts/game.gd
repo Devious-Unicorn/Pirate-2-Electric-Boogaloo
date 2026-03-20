@@ -48,10 +48,13 @@ func _on_islands_generation_complete() -> void:
 	(func(): await nav_areas_ready).call_deferred()
 	LoadingScreen.setStatus.call_deferred("Randomly place houses on each island")
 	(func(): 
-		get_node("House spawner").spawnHouses()
-		get_node("House spawner").spawnGuys()
+		var HouseSpawner = get_node("House spawner")
+		HouseSpawner.spawnHouses()
+		await HouseSpawner.houseSpawnComplete
+		HouseSpawner.spawnGuys()
+		await HouseSpawner.guySpawnComplete
 	).call_deferred()
-	call_deferred("emit_signal", "generation_complete")
+	generation_complete.emit.call_deferred()
 
 func createNavAreas():
 	LoadingScreen.setStatus.call_deferred("Initialize NavigationRegion and NavigationPolygon for generating from the islands' hitboxes")
@@ -73,7 +76,6 @@ func createNavAreas():
 	navArea.navigation_polygon = navPoly
 	LoadingScreen.setStatus.call_deferred("Add the completed NavigationRegion to the scene tree")
 	add_child.call_deferred(navArea)
-	print("navigation region added to scene tree")
 	nav_areas_ready.emit.call_deferred()
 
 func _get_island_pos(i: int, size: Vector2) -> Vector2:

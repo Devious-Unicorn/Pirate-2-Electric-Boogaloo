@@ -33,10 +33,12 @@ octaves = 1
 scale_factor = 32.0
 LoadingScreen = NodePath("../CanvasLayer/Loading")
 
-[node name="House spawner" type="Node2D" parent="." unique_id=1474668955 node_paths=PackedStringArray("LoadingScreen")]
+[node name="House spawner" type="Node2D" parent="." unique_id=1474668955 node_paths=PackedStringArray("LoadingScreen", "Islands", "Game")]
 script = ExtResource("5_j62u1")
 houseDistance = 37.5
 LoadingScreen = NodePath("../CanvasLayer/Loading")
+Islands = NodePath("../Islands")
+Game = NodePath("..")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=436931271]
 
