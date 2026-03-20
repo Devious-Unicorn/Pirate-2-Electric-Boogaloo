@@ -6,6 +6,7 @@ extends CharacterBody2D
 @export var acceleration: float = 10
 # how much the boat slows every frame
 @export_range(0, 100, 0.001) var friction: float = 5
+@export_range(0, 100, 0.001) var beachedFriction: float = 25
 # how much the wind from the ocean scene pushes the boat
 @export var wind_push_factor: float = 0.5
 
@@ -37,9 +38,15 @@ func _physics_process(delta: float) -> void:
 	# add to velocity instead of setting directly to make the boat accelerate instead of moving instantly
 	velocity += (driveForce + windForce) * delta
 	
+	var realFriction
+	if(!get_last_slide_collision() == null and "Islands" in get_last_slide_collision().get_collider().name):
+		realFriction = beachedFriction
+	else: 
+		realFriction = friction
+	
 	# if the boat is moving apply friction and rotation
 	if velocity.length() > 0: 
-		velocity = velocity.move_toward(Vector2.ZERO, friction * delta)
+		velocity = velocity.move_toward(Vector2.ZERO, realFriction * delta)
 		rotation = lerp_angle(rotation, velocity.angle(), 0.01)
 	
 	#reduce max speed or increase max speed depending on velocity angle and wind direction
