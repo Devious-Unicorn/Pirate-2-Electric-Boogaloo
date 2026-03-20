@@ -44,12 +44,13 @@ func _on_islands_generation_complete() -> void:
 	genFin = true
 	
 	LoadingScreen.setStatus.call_deferred("Create navigation regions for NPC random movement")
-	var thread = Thread.new(); thread.start(createNavAreas)
-	await nav_areas_ready
-	thread.wait_to_finish()
+	createNavAreas()
+	(func(): await nav_areas_ready).call_deferred()
 	LoadingScreen.setStatus.call_deferred("Randomly place houses on each island")
-	get_node("House spawner").spawnHouses()
-	get_node("House spawner").spawnGuys()
+	(func(): 
+		get_node("House spawner").spawnHouses()
+		get_node("House spawner").spawnGuys()
+	).call_deferred()
 	call_deferred("emit_signal", "generation_complete")
 
 func createNavAreas():
