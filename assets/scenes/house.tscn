@@ -1,7 +1,0 @@
-[gd_scene format=3 uid="uid://bpb7rlckmfmac"]
-
-[ext_resource type="Texture2D" uid="uid://djk5drfjebxq7" path="res://assets/sprites/house.png" id="2_16i3a"]
-
-[node name="House" type="Sprite2D" unique_id=49001976]
-scale = Vector2(3, 3)
-texture = ExtResource("2_16i3a")

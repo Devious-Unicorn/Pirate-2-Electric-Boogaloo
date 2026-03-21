@@ -2,7 +2,7 @@ extends StaticBody2D
 
 var noise = FastNoiseLite.new()
 
-@export_group("Generation values")
+@export_group("Generation Parameters")
 @export_range(0, 1, 0.01) var sandThreshold: float = 0.05
 @export_range(-1, 1, 0.01) var sea_level = 0.5
 @export var noise_seed = null
@@ -13,17 +13,19 @@ var noise = FastNoiseLite.new()
 @export var gameSize := Vector2i(480, 270) # Use smaller size for BitMap speed
 @export var scale_factor: float = 8.0
 @export var LoadingScreen: PanelContainer
+@export var Game: Node2D
 
 @export var island_shader: Shader
 
 signal generationComplete
 
 var is_clone := false;
+var cols: Array[CollisionPolygon2D]
 
 func generate() -> void:
-	LoadingScreen.setStatus.call_deferred("Initialization for island procedural generation")
 	if is_clone: return
-	# Initialize noise using EXPORTED frequency
+	LoadingScreen.setStatus.call_deferred("Initialization for island procedural generation")
+	# Initialize noise
 	if noise_seed: pass
 	else: noise_seed = randi()
 	noise.seed = noise_seed
@@ -34,7 +36,8 @@ func generate() -> void:
 	noise.frequency = noise_freq
 	noise.fractal_octaves = octaves
 	_buildMesh()
-	call_deferred("emit_signal", "generationComplete")
+	generationComplete.emit.call_deferred()
+	Game._on_islands_generation_complete.call()
 
 func _buildMesh():
 	LoadingScreen.setStatus.call_deferred("Convert noise to black and white image")
@@ -58,15 +61,8 @@ func _buildMesh():
 	
 	LoadingScreen.setStatus.call_deferred("Convert opaque areas of image to polygons")
 	var bitmap = BitMap.new()
-	bitmap.create_from_image_alpha(img, 0.5) 
+	bitmap.create_from_image_alpha(img, 0.5)
 	var polys = bitmap.opaque_to_polygons(Rect2i(0, 0, gameSize.x, gameSize.y))
-	
-	LoadingScreen.setStatus.call_deferred("Delete old hitboxes if any exist")
-	(func(): 
-		for child in get_children():
-			if child is CollisionPolygon2D:
-				child.free()
-	).call_deferred()
 	
 	LoadingScreen.setStatus.call_deferred("Initialize SurfaceTool to create island mesh")
 	var st = SurfaceTool.new()
@@ -128,30 +124,41 @@ func _buildMesh():
 	
 	mesh.material = mat
 	add_child(mesh)
-	
-	self.collision_layer = 1
-	self.collision_mask = 0
 
 func create_island_collision(points: PackedVector2Array):
 	if points.size() < 3: return
 	
-	# 1. Scale points to match the world visually
+	# 1. Create the Visual/Physics Island (Your existing code)
 	var scaled_points = PackedVector2Array()
-	for p in points:
-		scaled_points.append(p * scale_factor)
-
-	# 2. Ensure correct winding (Required for some physics solvers)
+	for p in points: scaled_points.append(p * scale_factor)
 	if not Geometry2D.is_polygon_clockwise(scaled_points):
 		scaled_points.reverse()
-
-	# 3. Clean the polygon (Removes self-intersections from the noise)
-	var cleaned_polys = Geometry2D.offset_polygon(scaled_points, 0.0)
 	
-	# 4. Create a collider for each resulting shape
+	# 2. Add a NavigationRegion2D SPECIFICALLY for this island
+	var nav_region := NavigationRegion2D.new()
+	var nav_poly := NavigationPolygon.new()
+	
+	# Modern Godot 4 way to manually build a nav mesh from points:
+	nav_poly.vertices = scaled_points
+	# Create an array of indices pointing to the vertices (0, 1, 2, 3...)
+	var indices = PackedInt32Array()
+	for i in range(scaled_points.size()):
+		indices.append(i)
+	
+	# Add one polygon made of all those vertices
+	nav_poly.add_polygon(indices)
+	
+	nav_region.navigation_polygon = nav_poly
+	add_child.call_deferred(nav_region)
+	
+	# 3. Create the Physics Collider (Your existing code)
+	var cleaned_polys = Geometry2D.offset_polygon(scaled_points, 0.0)
 	for poly in cleaned_polys:
 		var col := CollisionPolygon2D.new()
 		col.build_mode = CollisionPolygon2D.BUILD_SOLIDS
 		col.polygon = poly
+		# add this collider to the cols array for use in the house spawning script
+		cols.append(col)
 		add_child.call_deferred(col)
 
 func duplicate_data_to(target: Node2D) -> void:

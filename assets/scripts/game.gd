@@ -4,6 +4,7 @@ extends Node2D
 @onready var Islands = $Islands
 @onready var Ocean = $Ocean
 @export var LoadingScreen: PanelContainer
+@export var HouseSpawner: Node2D
 
 var islands: Array
 var genFin := false
@@ -11,11 +12,8 @@ signal nav_areas_ready
 signal generation_complete
 
 func _ready() -> void:
-	var thread = Thread.new(); thread.start($Islands.call.bind("generate"))
+	var thread = Thread.new(); thread.start($Islands.generate)
 	await $Islands.generationComplete
-	thread.wait_to_finish()
-	thread.start(_on_islands_generation_complete)
-	await generation_complete
 	thread.wait_to_finish()
 
 func _on_islands_generation_complete() -> void:
@@ -43,40 +41,36 @@ func _on_islands_generation_complete() -> void:
 		
 	genFin = true
 	
-	LoadingScreen.setStatus.call_deferred("Create navigation regions for NPC random movement")
-	createNavAreas()
-	(func(): await nav_areas_ready).call_deferred()
 	LoadingScreen.setStatus.call_deferred("Randomly place houses on each island")
-	(func(): 
-		var HouseSpawner = get_node("House spawner")
-		HouseSpawner.spawnHouses()
-		await HouseSpawner.houseSpawnComplete
-		HouseSpawner.spawnGuys()
-		await HouseSpawner.guySpawnComplete
-	).call_deferred()
+	HouseSpawner.spawnHouses()
 	generation_complete.emit.call_deferred()
 
 func createNavAreas():
-	LoadingScreen.setStatus.call_deferred("Initialize NavigationRegion and NavigationPolygon for generating from the islands' hitboxes")
-	var navArea: NavigationRegion2D = NavigationRegion2D.new()
-	var navPoly: NavigationPolygon = NavigationPolygon.new()
+	# This must run on the Main Thread
+	if not Thread.is_main_thread():
+		createNavAreas.call_deferred()
+		return
+
+	var navArea = NavigationRegion2D.new()
+	var navPoly = NavigationPolygon.new()
 	
-	navPoly.parsed_geometry_type = NavigationPolygon.PARSED_GEOMETRY_STATIC_COLLIDERS
+	# IMPORTANT: Change to 'Root Node Children' and 'Visible Geometry'
+	# This treats your island polygons as the WALKABLE area, not obstacles.
+	navPoly.parsed_geometry_type = NavigationPolygon.PARSED_GEOMETRY_MESH_INSTANCES
 	navPoly.source_geometry_mode = NavigationPolygon.SOURCE_GEOMETRY_ROOT_NODE_CHILDREN
 	
 	var sourceData = NavigationMeshSourceGeometryData2D.new()
-	(func(): 
-		LoadingScreen.setStatus("Parse the geometry of the hitboxes of the islands to create the navigation polygon")
-		NavigationServer2D.parse_source_geometry_data(navPoly, sourceData, $Islands)
-		LoadingScreen.setStatus("Bake the parsed source geometry of the islands into the navigation polygon")
-		NavigationServer2D.bake_from_source_geometry_data(navPoly, sourceData)
-	).call_deferred()
 	
-	LoadingScreen.setStatus.call_deferred("Set the navigation polygon of the NavigationRegion to the navigation polygon generated from the parsed source geometry of the islands")
+	# Parse the $Islands node. It will look for the visual shapes of your islands.
+	NavigationServer2D.parse_source_geometry_data(navPoly, sourceData, $Islands)
+	NavigationServer2D.bake_from_source_geometry_data(navPoly, sourceData)
+	
 	navArea.navigation_polygon = navPoly
-	LoadingScreen.setStatus.call_deferred("Add the completed NavigationRegion to the scene tree")
-	add_child.call_deferred(navArea)
-	nav_areas_ready.emit.call_deferred()
+	add_child(navArea)
+	
+	# Give the server a moment to register the new regions
+	await get_tree().physics_frame
+	nav_areas_ready.emit()
 
 func _get_island_pos(i: int, size: Vector2) -> Vector2:
 	var offsets = [

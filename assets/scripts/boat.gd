@@ -10,6 +10,7 @@ extends CharacterBody2D
 # how much the wind from the ocean scene pushes the boat
 @export var wind_push_factor: float = 0.5
 
+@onready var Game: Node2D = get_node("../")
 @onready var Main := get_parent()
 @onready var Ocean := Main.get_node_or_null("Ocean")
 @onready var Islands := Main.get_node_or_null("Islands")
@@ -18,18 +19,21 @@ extends CharacterBody2D
 var wind_direction: Vector2 = Vector2.ZERO
 var wind_strength: float = 0.0
 var endl := "\n"
+# stores how many crew members the boat has
+var crew: int = 1
 
 func _ready() -> void:
 	global_position = islandSize / 2
-	await Islands.generationComplete
+	await get_parent().generation_complete
 	
 	while(test_move(global_transform, Vector2.ZERO)):
-		global_position = Vector2(randf_range(0, islandSize.x), randf_range(0, islandSize.y))
+		global_position.x -= 5
+		force_update_transform()
 
 func _unhandled_input(event: InputEvent) -> void:
 	if Input.is_action_pressed("zoom in"): $Camera2D.zoom += Vector2.ONE * 0.1
 	if Input.is_action_pressed("zoom out"): $Camera2D.zoom -= Vector2.ONE * 0.1
-	
+	$Camera2D.zoom = $Camera2D.zoom.clamp(Vector2.ONE * 0.4, Vector2.ONE * 10)
 
 func _physics_process(delta: float) -> void:
 	# get forces that would cause a change in velocity
@@ -55,10 +59,7 @@ func _physics_process(delta: float) -> void:
 	# limit speed to maxSpeed
 	velocity = velocity.limit_length(maxSpeed)
 	
-	$CanvasLayer/Node2D.rotation = remap(velocity.length(), 0, 50, 0, PI / 2)
-	
-	# limit camera zoom
-	$Camera2D.zoom = $Camera2D.zoom.clamp(Vector2.ONE * 0.25, Vector2.ONE * 10)
+	$"CanvasLayer/Speedometer needle".rotation = remap(velocity.length(), 0, 50, 0, PI / 2)
 	
 	move_and_slide()
 	
