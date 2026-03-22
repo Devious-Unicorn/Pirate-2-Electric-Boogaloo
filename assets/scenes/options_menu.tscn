@@ -46,21 +46,25 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_d2ku8")
 [node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer" unique_id=859442800]
 layout_mode = 2
 
-[node name="up" type="HBoxContainer" parent="PanelContainer/VBoxContainer" unique_id=571495113]
-custom_minimum_size = Vector2(0, 32)
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/VBoxContainer" unique_id=52288286]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="PanelContainer/VBoxContainer/up" unique_id=1199049966]
+[node name="up" type="HBoxContainer" parent="PanelContainer/VBoxContainer/HBoxContainer" unique_id=571495113]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="PanelContainer/VBoxContainer/HBoxContainer/up" unique_id=1199049966]
 layout_mode = 2
 size_flags_horizontal = 4
 theme = ExtResource("2_1bfk6")
 text = "Drive north:"
 
-[node name="Control" type="Control" parent="PanelContainer/VBoxContainer/up" unique_id=493966548]
+[node name="Control" type="Control" parent="PanelContainer/VBoxContainer/HBoxContainer/up" unique_id=493966548]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="ctrl" type="Button" parent="PanelContainer/VBoxContainer/up" unique_id=1534579108]
+[node name="ctrl" type="Button" parent="PanelContainer/VBoxContainer/HBoxContainer/up" unique_id=1534579108]
 custom_minimum_size = Vector2(96, 24)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -71,25 +75,60 @@ theme_override_fonts/font = ExtResource("3_ehycp")
 text = "Not Set"
 text_overrun_behavior = 4
 
-[node name="Control2" type="Control" parent="PanelContainer/VBoxContainer/up" unique_id=56064027]
-custom_minimum_size = Vector2(191, 0)
+[node name="Control2" type="Control" parent="PanelContainer/VBoxContainer/HBoxContainer/up" unique_id=56064027]
+custom_minimum_size = Vector2(29, 0)
 layout_mode = 2
 
-[node name="left" type="HBoxContainer" parent="PanelContainer/VBoxContainer" unique_id=766776131]
+[node name="disembark crew" type="HBoxContainer" parent="PanelContainer/VBoxContainer/HBoxContainer" unique_id=1687829272]
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
+size_flags_horizontal = 3
+tooltip_text = "Tell your crew to get on or off your boat."
 
-[node name="Label" type="Label" parent="PanelContainer/VBoxContainer/left" unique_id=1079480147]
+[node name="Label" type="Label" parent="PanelContainer/VBoxContainer/HBoxContainer/disembark crew" unique_id=2125782926]
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("2_1bfk6")
+text = "crew land/board:"
+
+[node name="Control" type="Control" parent="PanelContainer/VBoxContainer/HBoxContainer/disembark crew" unique_id=1392791887]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ctrl" type="Button" parent="PanelContainer/VBoxContainer/HBoxContainer/disembark crew" unique_id=1287260438]
+custom_minimum_size = Vector2(96, 24)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("3_ehycp")
+text = "Not Set"
+text_overrun_behavior = 4
+
+[node name="Control2" type="Control" parent="PanelContainer/VBoxContainer/HBoxContainer/disembark crew" unique_id=11403770]
+custom_minimum_size = Vector2(29, 0)
+layout_mode = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="PanelContainer/VBoxContainer" unique_id=645590301]
+layout_mode = 2
+
+[node name="left" type="HBoxContainer" parent="PanelContainer/VBoxContainer/HBoxContainer2" unique_id=766776131]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="PanelContainer/VBoxContainer/HBoxContainer2/left" unique_id=1079480147]
 layout_mode = 2
 size_flags_horizontal = 4
 theme = ExtResource("2_1bfk6")
 text = "Drive west:"
 
-[node name="Control" type="Control" parent="PanelContainer/VBoxContainer/left" unique_id=434704840]
+[node name="Control" type="Control" parent="PanelContainer/VBoxContainer/HBoxContainer2/left" unique_id=434704840]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="ctrl" type="Button" parent="PanelContainer/VBoxContainer/left" unique_id=838373637]
+[node name="ctrl" type="Button" parent="PanelContainer/VBoxContainer/HBoxContainer2/left" unique_id=838373637]
 custom_minimum_size = Vector2(96, 24)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -100,25 +139,43 @@ theme_override_fonts/font = ExtResource("3_ehycp")
 text = "Not Set"
 text_overrun_behavior = 4
 
-[node name="Control2" type="Control" parent="PanelContainer/VBoxContainer/left" unique_id=1246584691]
-custom_minimum_size = Vector2(191, 0)
+[node name="Control2" type="Control" parent="PanelContainer/VBoxContainer/HBoxContainer2/left" unique_id=1246584691]
+custom_minimum_size = Vector2(29, 0)
 layout_mode = 2
 
-[node name="down" type="HBoxContainer" parent="PanelContainer/VBoxContainer" unique_id=839293387]
+[node name="NOCTRL" type="HBoxContainer" parent="PanelContainer/VBoxContainer/HBoxContainer2" unique_id=1335822505]
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
+size_flags_horizontal = 3
+tooltip_text = "Tell your crew to get back on board."
 
-[node name="Label" type="Label" parent="PanelContainer/VBoxContainer/down" unique_id=1782647316]
+[node name="Control" type="Control" parent="PanelContainer/VBoxContainer/HBoxContainer2/NOCTRL" unique_id=1528422167]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Control2" type="Control" parent="PanelContainer/VBoxContainer/HBoxContainer2/NOCTRL" unique_id=1859284000]
+custom_minimum_size = Vector2(29, 0)
+layout_mode = 2
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="PanelContainer/VBoxContainer" unique_id=416876664]
+layout_mode = 2
+
+[node name="down" type="HBoxContainer" parent="PanelContainer/VBoxContainer/HBoxContainer3" unique_id=839293387]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="PanelContainer/VBoxContainer/HBoxContainer3/down" unique_id=1782647316]
 layout_mode = 2
 size_flags_horizontal = 4
 theme = ExtResource("2_1bfk6")
 text = "Drive south:"
 
-[node name="Control" type="Control" parent="PanelContainer/VBoxContainer/down" unique_id=439942845]
+[node name="Control" type="Control" parent="PanelContainer/VBoxContainer/HBoxContainer3/down" unique_id=439942845]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="ctrl" type="Button" parent="PanelContainer/VBoxContainer/down" unique_id=290726582]
+[node name="ctrl" type="Button" parent="PanelContainer/VBoxContainer/HBoxContainer3/down" unique_id=290726582]
 custom_minimum_size = Vector2(96, 24)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -129,25 +186,42 @@ theme_override_fonts/font = ExtResource("3_ehycp")
 text = "Not Set"
 text_overrun_behavior = 4
 
-[node name="Control2" type="Control" parent="PanelContainer/VBoxContainer/down" unique_id=1060032645]
-custom_minimum_size = Vector2(191, 0)
+[node name="Control2" type="Control" parent="PanelContainer/VBoxContainer/HBoxContainer3/down" unique_id=1060032645]
+custom_minimum_size = Vector2(29, 0)
 layout_mode = 2
 
-[node name="right" type="HBoxContainer" parent="PanelContainer/VBoxContainer" unique_id=141564966]
+[node name="NOCTRL" type="HBoxContainer" parent="PanelContainer/VBoxContainer/HBoxContainer3" unique_id=192941209]
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
+size_flags_horizontal = 3
 
-[node name="Label" type="Label" parent="PanelContainer/VBoxContainer/right" unique_id=350286888]
+[node name="Control" type="Control" parent="PanelContainer/VBoxContainer/HBoxContainer3/NOCTRL" unique_id=1842135640]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Control2" type="Control" parent="PanelContainer/VBoxContainer/HBoxContainer3/NOCTRL" unique_id=1853937404]
+custom_minimum_size = Vector2(29, 0)
+layout_mode = 2
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="PanelContainer/VBoxContainer" unique_id=946234020]
+layout_mode = 2
+
+[node name="right" type="HBoxContainer" parent="PanelContainer/VBoxContainer/HBoxContainer4" unique_id=141564966]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="PanelContainer/VBoxContainer/HBoxContainer4/right" unique_id=350286888]
 layout_mode = 2
 size_flags_horizontal = 4
 theme = ExtResource("2_1bfk6")
 text = "Drive east:"
 
-[node name="Control" type="Control" parent="PanelContainer/VBoxContainer/right" unique_id=1762120559]
+[node name="Control" type="Control" parent="PanelContainer/VBoxContainer/HBoxContainer4/right" unique_id=1762120559]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="ctrl" type="Button" parent="PanelContainer/VBoxContainer/right" unique_id=1753990019]
+[node name="ctrl" type="Button" parent="PanelContainer/VBoxContainer/HBoxContainer4/right" unique_id=1753990019]
 custom_minimum_size = Vector2(96, 24)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -158,25 +232,42 @@ theme_override_fonts/font = ExtResource("3_ehycp")
 text = "Not Set"
 text_overrun_behavior = 4
 
-[node name="Control2" type="Control" parent="PanelContainer/VBoxContainer/right" unique_id=1803233749]
-custom_minimum_size = Vector2(191, 0)
+[node name="Control2" type="Control" parent="PanelContainer/VBoxContainer/HBoxContainer4/right" unique_id=1803233749]
+custom_minimum_size = Vector2(29, 0)
 layout_mode = 2
 
-[node name="zoom in" type="HBoxContainer" parent="PanelContainer/VBoxContainer" unique_id=1199068266]
+[node name="NOCTRL" type="HBoxContainer" parent="PanelContainer/VBoxContainer/HBoxContainer4" unique_id=415387205]
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
+size_flags_horizontal = 3
 
-[node name="Label" type="Label" parent="PanelContainer/VBoxContainer/zoom in" unique_id=958702109]
+[node name="Control" type="Control" parent="PanelContainer/VBoxContainer/HBoxContainer4/NOCTRL" unique_id=256898279]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Control2" type="Control" parent="PanelContainer/VBoxContainer/HBoxContainer4/NOCTRL" unique_id=59186969]
+custom_minimum_size = Vector2(29, 0)
+layout_mode = 2
+
+[node name="HBoxContainer5" type="HBoxContainer" parent="PanelContainer/VBoxContainer" unique_id=1025173324]
+layout_mode = 2
+
+[node name="zoom in" type="HBoxContainer" parent="PanelContainer/VBoxContainer/HBoxContainer5" unique_id=1199068266]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="PanelContainer/VBoxContainer/HBoxContainer5/zoom in" unique_id=958702109]
 layout_mode = 2
 size_flags_horizontal = 4
 theme = ExtResource("2_1bfk6")
 text = "Zoom camera in:"
 
-[node name="Control" type="Control" parent="PanelContainer/VBoxContainer/zoom in" unique_id=163201500]
+[node name="Control" type="Control" parent="PanelContainer/VBoxContainer/HBoxContainer5/zoom in" unique_id=163201500]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="ctrl" type="Button" parent="PanelContainer/VBoxContainer/zoom in" unique_id=1652886216]
+[node name="ctrl" type="Button" parent="PanelContainer/VBoxContainer/HBoxContainer5/zoom in" unique_id=1652886216]
 custom_minimum_size = Vector2(96, 24)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -187,25 +278,42 @@ theme_override_fonts/font = ExtResource("3_ehycp")
 text = "Not Set"
 text_overrun_behavior = 4
 
-[node name="Control2" type="Control" parent="PanelContainer/VBoxContainer/zoom in" unique_id=953141355]
-custom_minimum_size = Vector2(191, 0)
+[node name="Control2" type="Control" parent="PanelContainer/VBoxContainer/HBoxContainer5/zoom in" unique_id=953141355]
+custom_minimum_size = Vector2(29, 0)
 layout_mode = 2
 
-[node name="zoom out" type="HBoxContainer" parent="PanelContainer/VBoxContainer" unique_id=604396578]
+[node name="NOCTRL" type="HBoxContainer" parent="PanelContainer/VBoxContainer/HBoxContainer5" unique_id=434902874]
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
+size_flags_horizontal = 3
 
-[node name="Label" type="Label" parent="PanelContainer/VBoxContainer/zoom out" unique_id=1570422752]
+[node name="Control" type="Control" parent="PanelContainer/VBoxContainer/HBoxContainer5/NOCTRL" unique_id=960229863]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Control2" type="Control" parent="PanelContainer/VBoxContainer/HBoxContainer5/NOCTRL" unique_id=2009390109]
+custom_minimum_size = Vector2(29, 0)
+layout_mode = 2
+
+[node name="HBoxContainer6" type="HBoxContainer" parent="PanelContainer/VBoxContainer" unique_id=928709934]
+layout_mode = 2
+
+[node name="zoom out" type="HBoxContainer" parent="PanelContainer/VBoxContainer/HBoxContainer6" unique_id=604396578]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="PanelContainer/VBoxContainer/HBoxContainer6/zoom out" unique_id=1570422752]
 layout_mode = 2
 size_flags_horizontal = 4
 theme = ExtResource("2_1bfk6")
 text = "Zoom camera out:"
 
-[node name="Control" type="Control" parent="PanelContainer/VBoxContainer/zoom out" unique_id=1550109152]
+[node name="Control" type="Control" parent="PanelContainer/VBoxContainer/HBoxContainer6/zoom out" unique_id=1550109152]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="ctrl" type="Button" parent="PanelContainer/VBoxContainer/zoom out" unique_id=2138162524]
+[node name="ctrl" type="Button" parent="PanelContainer/VBoxContainer/HBoxContainer6/zoom out" unique_id=2138162524]
 custom_minimum_size = Vector2(96, 24)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -216,10 +324,22 @@ theme_override_fonts/font = ExtResource("3_ehycp")
 text = "Not Set"
 text_overrun_behavior = 4
 
-[node name="Control2" type="Control" parent="PanelContainer/VBoxContainer/zoom out" unique_id=1919126848]
-custom_minimum_size = Vector2(191, 0)
+[node name="Control2" type="Control" parent="PanelContainer/VBoxContainer/HBoxContainer6/zoom out" unique_id=1919126848]
+custom_minimum_size = Vector2(29, 0)
+layout_mode = 2
+
+[node name="NOCTRL" type="HBoxContainer" parent="PanelContainer/VBoxContainer/HBoxContainer6" unique_id=44922290]
+custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 size_flags_horizontal = 3
+
+[node name="Control" type="Control" parent="PanelContainer/VBoxContainer/HBoxContainer6/NOCTRL" unique_id=88307472]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Control2" type="Control" parent="PanelContainer/VBoxContainer/HBoxContainer6/NOCTRL" unique_id=1117035746]
+custom_minimum_size = Vector2(29, 0)
+layout_mode = 2
 
 [node name="HSeparator" type="HSeparator" parent="PanelContainer/VBoxContainer" unique_id=1821782942]
 layout_mode = 2

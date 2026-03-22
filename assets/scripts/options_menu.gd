@@ -50,7 +50,7 @@ func saveInputMap():
 				event_data["keycode"] = event.keycode
 			elif event is InputEventJoypadButton:
 				event_data["button_index"] = event.button_index
-			elif event is InputEventMouseButton: # Add this
+			elif event is InputEventMouseButton:
 				event_data["button_index"] = event.button_index
 				
 			events_data.append(event_data)
@@ -62,7 +62,7 @@ func saveInputMap():
 		file.store_string(json_string)
 		file.close()
 	else:
-		push_error("Failed to save input map to ", ProjectSettings.globalize_path(inputMapPath))
+		assert(false, "Failed to save input map to " + ProjectSettings.globalize_path(inputMapPath))
 
 func loadInputMap():
 	if not FileAccess.file_exists(inputMapPath): return
