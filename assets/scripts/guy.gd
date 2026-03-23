@@ -10,9 +10,8 @@ var state_timer: float = 0.0
 var is_map_ready = false
 
 func _ready() -> void:
-	NavigationServer2D.map_changed.connect(_on_map_changed)
-	if "Crew" in name: speed = 15
-	$Label.text = name
+	if "Crew" in name: speed = 15; is_map_ready = true; $CollisionShape2D.set_deferred("disabled", true); nav.avoidance_enabled = false
+	else: NavigationServer2D.map_changed.connect(_on_map_changed)
 
 func _on_map_changed(_map_rid):
 	# Crucial: The server needs a physics frame to register the new RIDs
@@ -21,6 +20,7 @@ func _on_map_changed(_map_rid):
 	pick_new_target()
 
 func _physics_process(delta: float) -> void:
+	$Label.text = name
 	# if the map isn't ready or not visible then don't do anything this frame to save resources
 	if not is_map_ready or not $VisibleOnScreenNotifier2D.is_on_screen(): return
 	
@@ -40,16 +40,18 @@ func _physics_process(delta: float) -> void:
 			decide_next_state()
 	
 	if "Crew" in name:
+		$Label.text += "\n" + str(nav.target_position) + "\n" + str(position) + "\n" + str(velocity.length())
 		if not nav.is_navigation_finished():
 			var next_pos = nav.get_next_path_position()
 			var local_dir = to_local(next_pos).normalized()
 			velocity = local_dir * speed
 		else:
 			velocity = Vector2.ZERO
-			if global_position.distance_squared_to(get_parent().get_node("Boat").global_position) < 20:
+			if nav.target_position == $"../Boat".global_position:
 				queue_free()
 				return
-			for i in get_parent().find_children("*Guy*", "CharacterBody2D"):
+			for i in get_parent().find_children("*", "CharacterBody2D"):
+				if "Crew" in i.name: continue
 				var inRange: Array[Node]
 				if global_position.distance_squared_to(i.global_position) < (50 ** 2):
 					inRange.append(i)

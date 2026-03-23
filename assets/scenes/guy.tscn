@@ -30,7 +30,6 @@ shape = SubResource("RectangleShape2D_s2wpo")
 avoidance_enabled = true
 
 [node name="Label" type="Label" parent="." unique_id=1978561434]
-visible = false
 offset_right = 40.0
 offset_bottom = 23.0
 
