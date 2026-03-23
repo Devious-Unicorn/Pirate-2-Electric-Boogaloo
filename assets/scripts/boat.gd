@@ -64,6 +64,8 @@ func _physics_process(delta: float) -> void:
 	if velocity.length() > 0: 
 		var realFriction
 		rotation = lerp_angle(rotation, velocity.angle(), 0.01)
+		
+		# only check for beaching if moving to remove inconsitency
 		if(!get_last_slide_collision() == null and "Islands" in get_last_slide_collision().get_collider().name):
 			realFriction = beachedFriction
 			beached = true

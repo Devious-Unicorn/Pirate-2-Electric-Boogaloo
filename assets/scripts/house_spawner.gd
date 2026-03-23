@@ -41,9 +41,9 @@ func spawnHouses():
 			area = polygonArea(island.polygon)
 		var maxHouses: int = floor(
 			# makes a graph where an island with less than 100 area will have 0 houses and the biggest island i've seen so far (area of ~1106000) will only have 50
-			4.0882579337e-11 * pow(area - 100, 2)
+			(50 / pow(1.106e6 - 500, 2)) * pow(area - 500, 2)
 		)
-		var num: int = randi_range(1, maxHouses) if area > 100 else 0
+		var num: int = randi_range(1, maxHouses) if area > 500 else 0
 		var spawned_on_island = 0
 		var attempts = 0
 		while spawned_on_island < num and attempts < 100:
