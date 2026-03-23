@@ -11,6 +11,8 @@ var is_map_ready = false
 
 func _ready() -> void:
 	NavigationServer2D.map_changed.connect(_on_map_changed)
+	if "Crew" in name: speed = 15
+	$Label.text = name
 
 func _on_map_changed(_map_rid):
 	# Crucial: The server needs a physics frame to register the new RIDs
@@ -28,7 +30,7 @@ func _physics_process(delta: float) -> void:
 		move_and_slide()
 		return
 	
-	if current_state in [State.MOVING, State.WALKING]:
+	if current_state in [State.MOVING, State.WALKING] and not "Crew" in name:
 		if not nav.is_navigation_finished():
 			var next_pos = nav.get_next_path_position()
 			var local_dir = to_local(next_pos).normalized()
@@ -36,6 +38,23 @@ func _physics_process(delta: float) -> void:
 		else:
 			velocity = Vector2.ZERO
 			decide_next_state()
+	
+	if "Crew" in name:
+		if not nav.is_navigation_finished():
+			var next_pos = nav.get_next_path_position()
+			var local_dir = to_local(next_pos).normalized()
+			velocity = local_dir * speed
+		else:
+			velocity = Vector2.ZERO
+			if global_position.distance_squared_to(get_parent().get_node("Boat").global_position) < 20:
+				queue_free()
+				return
+			for i in get_parent().find_children("*Guy*", "CharacterBody2D"):
+				var inRange: Array[Node]
+				if global_position.distance_squared_to(i.global_position) < (50 ** 2):
+					inRange.append(i)
+				
+				nav.target_position = inRange.pick_random().global_position
 	
 	move_and_slide()
 
