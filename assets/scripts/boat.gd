@@ -15,25 +15,42 @@ extends CharacterBody2D
 @onready var Ocean := Main.get_node_or_null("Ocean")
 @onready var Islands := Main.get_node_or_null("Islands")
 @onready var islandSize: Vector2 = Islands.gameSize * Islands.scale_factor
+@onready var guy := preload("res://assets/scenes/guy.tscn")
+
 # direction and strength of wind (sent from Ocean every frame)
 var wind_direction: Vector2 = Vector2.ZERO
 var wind_strength: float = 0.0
 var endl := "\n"
 # stores how many crew members the boat has
-var crew: int = 1
+var crewSize: int = 1
+var crew: Array[Node]
+var beached := false
+var crewOut := false
 
 func _ready() -> void:
 	global_position = islandSize / 2
 	await get_parent().generation_complete
 	
-	while(test_move(global_transform, Vector2.ZERO)):
-		global_position.x -= 5
+	while(isStuck()):
+		global_position += Vector2(
+			randf_range(-20, 20),
+			randf_range(-20, 20)
+		)
 		force_update_transform()
+
+func isStuck() -> bool:
+	for dir in [Vector2.RIGHT, Vector2.LEFT, Vector2.UP, Vector2.DOWN]:
+		if !test_move(global_transform, dir * 20): return false;
+	return true
 
 func _unhandled_input(event: InputEvent) -> void:
 	if Input.is_action_pressed("zoom in"): $Camera2D.zoom += Vector2.ONE * 0.1
 	if Input.is_action_pressed("zoom out"): $Camera2D.zoom -= Vector2.ONE * 0.1
 	$Camera2D.zoom = $Camera2D.zoom.clamp(Vector2.ONE * 0.4, Vector2.ONE * 10)
+	
+	if Input.is_action_just_pressed("disembark crew") and beached:
+		crewOut = not crewOut
+		_handleCrew()
 
 func _physics_process(delta: float) -> void:
 	# get forces that would cause a change in velocity
@@ -45,7 +62,9 @@ func _physics_process(delta: float) -> void:
 	var realFriction
 	if(!get_last_slide_collision() == null and "Islands" in get_last_slide_collision().get_collider().name):
 		realFriction = beachedFriction
+		beached = true
 	else: 
+		beached = false
 		realFriction = friction
 	
 	# if the boat is moving apply friction and rotation
@@ -59,7 +78,13 @@ func _physics_process(delta: float) -> void:
 	# limit speed to maxSpeed
 	velocity = velocity.limit_length(maxSpeed)
 	
+	$CanvasLayer/Label.text = str(beached) + endl + str(crewOut) + endl + str(position) + endl + str(velocity) + endl + str(velocity.length())
+	
 	$"CanvasLayer/Speedometer needle".rotation = remap(velocity.length(), 0, 50, 0, PI / 2)
+	
+	if crewOut: velocity = Vector2.ZERO
+	
+	Game.get_node("Line2D").points = [global_position + ((Vector2.ONE * 32).rotated(rotation - PI / 4))]
 	
 	move_and_slide()
 	
@@ -80,3 +105,17 @@ func _physics_process(delta: float) -> void:
 func _drive() -> Vector2:
 	var input = Input.get_vector("left", "right", "up", "down")
 	return input
+
+func _handleCrew():
+	if not crewOut:
+		for c in crew:
+			c.get_node("NavigationAgent2D").target_position = global_position
+	else:
+		for i in range(crewSize):
+			# create a new guy
+			crew.append(guy.instantiate())
+			# name him something easy to keep track of
+			crew[-1].name = "CrewMember" + str(i)
+			# set him just in front of the boat with a little spread
+			crew[-1].global_position = global_position + ((Vector2.ONE * 32).rotated(rotation + randf_range(-PI / 12, PI / 12) - PI / 4))
+			Game.add_child(crew[-1])

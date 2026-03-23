@@ -58,7 +58,6 @@ expand_mode = 1
 [node name="SubViewportContainer" type="SubViewportContainer" parent="CanvasLayer/CenterContainer" unique_id=1894609149]
 custom_minimum_size = Vector2(160, 90)
 layout_mode = 2
-stretch = true
 
 [node name="SubViewport" type="SubViewport" parent="CanvasLayer/CenterContainer/SubViewportContainer" unique_id=429112840 node_paths=PackedStringArray("Boat", "MinimapIcon")]
 handle_input_locally = false
@@ -83,3 +82,7 @@ points = PackedVector2Array(0, 0, 0, -42)
 width = 5.0
 default_color = Color(1, 0, 0, 0.49803922)
 begin_cap_mode = 2
+
+[node name="Label" type="Label" parent="CanvasLayer" unique_id=2133495106]
+offset_right = 40.0
+offset_bottom = 23.0
