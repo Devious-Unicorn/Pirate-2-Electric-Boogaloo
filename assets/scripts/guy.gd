@@ -10,7 +10,11 @@ var state_timer: float = 0.0
 var is_map_ready = false
 
 func _ready() -> void:
-	if "Crew" in name: speed = 15; is_map_ready = true; $CollisionShape2D.set_deferred("disabled", true); nav.avoidance_enabled = false
+	if "Crew" in name: 
+		speed = 15
+		is_map_ready = true; $CollisionShape2D.set_deferred("disabled", true)
+		nav.avoidance_enabled = false
+		nav.target_desired_distance = 5
 	else: NavigationServer2D.map_changed.connect(_on_map_changed)
 
 func _on_map_changed(_map_rid):
@@ -20,7 +24,6 @@ func _on_map_changed(_map_rid):
 	pick_new_target()
 
 func _physics_process(delta: float) -> void:
-	$Label.text = name
 	# if the map isn't ready or not visible then don't do anything this frame to save resources
 	if not is_map_ready or not $VisibleOnScreenNotifier2D.is_on_screen(): return
 	
@@ -40,7 +43,7 @@ func _physics_process(delta: float) -> void:
 			decide_next_state()
 	
 	if "Crew" in name:
-		$Label.text += "\n" + str(nav.target_position) + "\n" + str(position) + "\n" + str(velocity.length())
+		#$Label.text = name + "\n" + str(nav.target_position) + "\n" + str(position) + "\n" + str(velocity.length())
 		if not nav.is_navigation_finished():
 			var next_pos = nav.get_next_path_position()
 			var local_dir = to_local(next_pos).normalized()
