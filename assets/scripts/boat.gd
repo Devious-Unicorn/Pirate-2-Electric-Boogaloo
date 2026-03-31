@@ -11,9 +11,9 @@ extends CharacterBody2D
 @export var wind_push_factor: float = 0.5
 
 @onready var Game: Node2D = get_node("../")
-@onready var Main := get_parent()
-@onready var Ocean := Main.get_node_or_null("Ocean")
-@onready var Islands := Main.get_node_or_null("Islands")
+@onready var Main := get_tree().root
+@onready var Ocean := Game.get_node_or_null("Ocean")
+@onready var Islands := Game.get_node_or_null("Islands")
 @onready var islandSize: Vector2 = Islands.gameSize * Islands.scale_factor
 @onready var guy := preload("res://assets/scenes/guy.tscn")
 
@@ -118,5 +118,6 @@ func _handleCrew():
 			# name him something easy to keep track of
 			crew[-1].name = "CrewMember" + str(i)
 			# set him just in front of the boat with a little spread
-			crew[-1].global_position = global_position + ((Vector2.ONE * 32).rotated(rotation + randf_range(-PI / 12, PI / 12) - PI / 4))
+			crew[-1].global_position = global_position
+			crew[-1].get_node("NavigationAgent2D").target_position = global_position + ((Vector2.ONE * 32).rotated(rotation + randf_range(-PI / 12, PI / 12) - PI / 4))
 			Game.add_child(crew[-1])

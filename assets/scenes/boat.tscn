@@ -16,6 +16,7 @@ texture_filter = 1
 motion_mode = 1
 platform_on_leave = 2
 script = ExtResource("1_5u0pl")
+beachedFriction = 30.0
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1602075657]
 texture_filter = 1
