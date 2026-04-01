@@ -80,7 +80,7 @@ func _physics_process(delta: float) -> void:
 	# limit speed to maxSpeed
 	velocity = velocity.limit_length(maxSpeed)
 	
-	$CanvasLayer/Label.text = str(beached) + endl + str(crewOut) + endl + str(position) + endl + str(velocity) + endl + str(velocity.length())
+	#$CanvasLayer/Label.text = str(beached) + endl + str(crewOut) + endl + str(position) + endl + str(velocity) + endl + str(velocity.length())
 	
 	$"CanvasLayer/Speedometer needle".rotation = remap(velocity.length(), 0, 50, 0, PI / 2)
 	
